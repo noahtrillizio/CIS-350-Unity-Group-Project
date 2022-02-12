@@ -7,6 +7,7 @@ TagManager:
   - CircleLights
   - TriangleLights
   - Hatch
+  - Hammer
   layers:
   - Default
   - TransparentFX
