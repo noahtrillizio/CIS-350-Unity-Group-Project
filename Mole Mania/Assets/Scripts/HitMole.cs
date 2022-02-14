@@ -2,10 +2,6 @@
  * Jacob Zydorowicz
  * Project 2 Mole Mania
  * Detects if hammer hits mole and raises score
-=======
- * Noah Trillizio
- * Project 2 Mole Mania
- * Makes blood splatter when hammer hits the mole
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +9,6 @@ using UnityEngine;
 
 public class HitMole : MonoBehaviour
 {
-    public GameObject SpecialEffect;
 
     public MoleMove moleMoveScript;
     
@@ -45,13 +40,4 @@ public class HitMole : MonoBehaviour
 
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (gameObject.tag == "Mole") return;
-        {
-            Instantiate(SpecialEffect, new Vector3(0, 5, 0), Quaternion.identity);
-        }
-    }
 }   
-
