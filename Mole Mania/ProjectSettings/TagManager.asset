@@ -8,6 +8,7 @@ TagManager:
   - TriangleLights
   - Hatch
   - Hammer
+  - Mole
   layers:
   - Default
   - TransparentFX

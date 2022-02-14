@@ -14,7 +14,7 @@ using UnityEngine;
 public class MoleMove : MonoBehaviour
 {
     public float speed;
-    private bool isUp;
+    public bool isUp;
     // Start is called before the first frame update
     void Start()
     {
