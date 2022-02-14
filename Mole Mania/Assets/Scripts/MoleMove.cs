@@ -13,6 +13,9 @@ using UnityEngine;
 //attach to moles.
 public class MoleMove : MonoBehaviour
 {
+    public GameObject Mole;
+    public GameObject Hammer;
+
     public float speed;
     public bool isUp;
     // Start is called before the first frame update
@@ -51,6 +54,4 @@ public class MoleMove : MonoBehaviour
             isUp = false;
         }
     }
-    
-
 }
