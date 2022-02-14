@@ -12,9 +12,13 @@ public class HitMachine : MonoBehaviour
     private Vector3 topLightPos;
     private Vector3 bottomLightPos;
 
+    public float X_Value;
+    public float Y_Value;
+    public float Z_Value;
 
     public MachineMovement machineMovementScript;
     public ScoreManager scoreManObj;
+    public GameObject SpecialEffect;
 
     private void Start()
     {
@@ -44,6 +48,7 @@ public class HitMachine : MonoBehaviour
                 {
                     hit.collider.transform.position = bottomLightPos;
                 }
+                Instantiate(SpecialEffect, new Vector3(X_Value, Y_Value, Z_Value), Quaternion.identity);
             }
 
 

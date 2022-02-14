@@ -12,6 +12,10 @@ public class ObjectClickDetect : MonoBehaviour
     public MachineMovement machineMovementScript;
     public GameObject SpecialEffect;
 
+    public float X_Value;
+    public float Y_Value;
+    public float Z_Value;
+
     private void OnMouseDown()
     {
         //when the lights are clicked, they turn off
@@ -19,7 +23,7 @@ public class ObjectClickDetect : MonoBehaviour
         {
             machineMovementScript.canHit = false;
             machineMovementScript.lightColor.DisableKeyword("_EMISSION");
-            Instantiate(SpecialEffect, new Vector3(0, 5, 0), Quaternion.identity);
+            Instantiate(SpecialEffect, new Vector3(X_Value, Y_Value, Z_Value), Quaternion.identity);
         }
 
 

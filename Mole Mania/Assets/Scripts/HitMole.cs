@@ -11,7 +11,8 @@ public class HitMole : MonoBehaviour
 {
 
     public MoleMove moleMoveScript;
-    
+
+
     public ScoreManager scoreManObj;
     private void OnMouseDown()
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,8 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X_Value: 0
+  Y_Value: 0
+  Z_Value: 0
   machineMovementScript: {fileID: 66535952}
   scoreManObj: {fileID: 285518687}
+  SpecialEffect: {fileID: 100008, guid: f55f0defa3c68c1498d7f9cae620bc19, type: 3}
 --- !u!64 &66535951
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -761,8 +765,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X_Value: 0
+  Y_Value: 0
+  Z_Value: 0
   machineMovementScript: {fileID: 643988515}
   scoreManObj: {fileID: 285518687}
+  SpecialEffect: {fileID: 100008, guid: f55f0defa3c68c1498d7f9cae620bc19, type: 3}
 --- !u!4 &644114079
 Transform:
   m_ObjectHideFlags: 0
@@ -1436,6 +1444,10 @@ PrefabInstance:
       propertyPath: scoreManObj
       value: 
       objectReference: {fileID: 285518687}
+    - target: {fileID: 86740463, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: SpecialEffect
+      value: 
+      objectReference: {fileID: 100004, guid: 5aac6238f52473c4ab422c13d2511616, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
 --- !u!1001 &1436840763
@@ -1918,8 +1930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X_Value: 0
+  Y_Value: 0
+  Z_Value: 0
   machineMovementScript: {fileID: 584072055}
   scoreManObj: {fileID: 285518687}
+  SpecialEffect: {fileID: 100008, guid: f55f0defa3c68c1498d7f9cae620bc19, type: 3}
 --- !u!1 &1000011497516464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,8 +1969,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X_Value: 0
+  Y_Value: 0
+  Z_Value: 0
   machineMovementScript: {fileID: 1218197708}
   scoreManObj: {fileID: 285518687}
+  SpecialEffect: {fileID: 100008, guid: f55f0defa3c68c1498d7f9cae620bc19, type: 3}
 --- !u!1 &1000011912328504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,8 +2008,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X_Value: 0
+  Y_Value: 0
+  Z_Value: 0
   machineMovementScript: {fileID: 1883676740}
   scoreManObj: {fileID: 285518687}
+  SpecialEffect: {fileID: 100008, guid: f55f0defa3c68c1498d7f9cae620bc19, type: 3}
 --- !u!1 &1000013581992136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2046,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112c495c3d033f74b98104cf7086ab0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineMovementScript: {fileID: 0}
+  SpecialEffect: {fileID: 100008, guid: f55f0defa3c68c1498d7f9cae620bc19, type: 3}
+  X_Value: 0.9666671
+  Y_Value: -1.588889
+  Z_Value: 1.588
 --- !u!114 &1000013581992138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2287,6 +2316,7 @@ GameObject:
   - component: {fileID: 924013873465413337}
   - component: {fileID: 924013873463480348}
   - component: {fileID: 924013873463480349}
+  - component: {fileID: 924013873463480350}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Hammer
@@ -2325,6 +2355,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.024323855, y: 0.025030449, z: 0.024208372}
   m_Center: {x: -0.00055073143, y: -0.0001921593, z: -0.0000000011597703}
+--- !u!114 &924013873463480350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924013873463480347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75188e796a5055f40802fc4eb9a39c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpecialEffect: {fileID: 100004, guid: 5aac6238f52473c4ab422c13d2511616, type: 3}
 --- !u!4 &924013873463643195
 Transform:
   m_ObjectHideFlags: 0
