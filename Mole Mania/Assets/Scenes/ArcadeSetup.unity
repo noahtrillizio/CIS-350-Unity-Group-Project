@@ -399,11 +399,37 @@ MeshCollider:
   m_GameObject: {fileID: 383034503}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 61091032f4534474483e67cff17fa2e4, type: 3}
+--- !u!65 &383034507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383034503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5625741, y: 0.676262, z: 1.9630492}
+  m_Center: {x: 0.000032848784, y: 0.45262152, z: 2.7609606}
+--- !u!65 &383034508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383034503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.740001, y: 2.3747857, z: 1.9072253}
+  m_Center: {x: 0.000032848784, y: -0.3966385, z: 0.9772536}
 --- !u!1001 &463334194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2095,9 +2121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 534669904}
-  lowYFlat: 16.4
-  highYFlat: 20.7
-  lowYTop: 34.4
+  lowYFlat: 17
+  highYFlat: 17.6
+  lowYTop: 33.5
   swingTime: 0.3
   HammerDistance: 10
 --- !u!65 &924013873463480349
