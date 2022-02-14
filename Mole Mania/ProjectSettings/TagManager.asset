@@ -9,6 +9,7 @@ TagManager:
   - Hatch
   - Hammer
   - Mole
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
