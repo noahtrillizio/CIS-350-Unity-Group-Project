@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 406780}
   - component: {fileID: 19806780}
   - component: {fileID: 19906780}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: smog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4603,7 +4603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498324}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4633,7 +4633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498334}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4664,7 +4664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498326}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone002(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4694,7 +4694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498330}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone001(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4725,7 +4725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498328}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4755,7 +4755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498332}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4786,7 +4786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498336}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4819,7 +4819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498338}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4851,7 +4851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498340}
   - component: {fileID: 13798324}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4940,7 +4940,7 @@ GameObject:
   - component: {fileID: 86740462}
   - component: {fileID: 86740463}
   - component: {fileID: 217577749}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mole
   m_TagString: Mole
   m_Icon: {fileID: 0}
@@ -5065,7 +5065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 170076735}
   - component: {fileID: 170076734}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
