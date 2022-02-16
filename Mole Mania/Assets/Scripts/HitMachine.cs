@@ -64,7 +64,7 @@ public class HitMachine : MonoBehaviour
                     gameObject.transform.position = lightOriginPos;
                     //gameObject.transform.position = gameObject.transform.position + new Vector3(2f, 0f, 0f);
                 }
-                Instantiate(SpecialEffect, new Vector3(X_Value, Y_Value, Z_Value), Quaternion.identity);
+                Instantiate(SpecialEffect, lightOriginPos, Quaternion.identity);
             }
 
 
