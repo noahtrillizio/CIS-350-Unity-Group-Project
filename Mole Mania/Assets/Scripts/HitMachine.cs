@@ -24,7 +24,7 @@ public class HitMachine : MonoBehaviour
     {
         //sets all lights to green by default
         lightColor = gameObject.GetComponent<Renderer>().material;
-        lightColor.SetColor("_EmissionColor", Color.green);
+        lightColor.SetColor("_EmissionColor", Color.red);
 
         canHit = false;
 
