@@ -10,12 +10,17 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
- 
+    //i think? i fixed this? score should show properly now - anna
     public TextMesh scoreText;
     public int score = 0;
-  
+
+    void Start()
+    {
+        scoreText.text = "0000";
+    }
+
     void Update()
     {
-        //scoreText.text = "Score: " +score;
+        scoreText.text = score.ToString();
     }
 }

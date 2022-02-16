@@ -6,8 +6,7 @@ using UnityEngine;
  * Anna Breuker
  * Mole Mania
  * This script makes the moles move up and down.
- * Will probably account for if the moles are hit once the
- * collision is all figured out :)
+ * Might make them do other things once we figure out the timer.
  */
 
 //attach to moles.
@@ -19,7 +18,7 @@ public class MoleMove : MonoBehaviour
     void Start()
     {
         isUp = false;
-        Debug.Log("is this script even running");
+        //Debug.Log("is this script even running");
         StartCoroutine(MoveMoleCoroutine());
     }
 

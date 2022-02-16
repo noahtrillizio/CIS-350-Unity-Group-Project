@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43822923, g: 0.4862522, b: 0.56652635, a: 1}
+  m_IndirectSpecularColor: {r: 0.43822882, g: 0.4862516, b: 0.5665251, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -224,12 +224,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 67fc7cc8eb18d07478486e47f680c96c, type: 3}
---- !u!1 &217577742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1393560457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &285518687 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3091957387444221020, guid: 5e3d5009d5e1b0f46a36602da946a985,
@@ -1419,7 +1413,9 @@ PrefabInstance:
       propertyPath: scoreManObj
       value: 
       objectReference: {fileID: 285518687}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 86740463, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+    - {fileID: 86740462, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
 --- !u!1001 &1436840763
 PrefabInstance:
@@ -2012,6 +2008,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!102 &2106677902 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 1691143461482151508, guid: 6683891cebcf0f148b393fa1d7eea0fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 6299542787984952884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000011065765387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,7 +2441,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924013873463480347}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.025710443, y: 0.030988192, z: 0.025550708}
@@ -2457,7 +2459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpecialEffect: {fileID: 100004, guid: 5aac6238f52473c4ab422c13d2511616, type: 3}
-  Mole: {fileID: 217577742}
 --- !u!4 &924013873463643195
 Transform:
   m_ObjectHideFlags: 0
@@ -2528,10 +2529,15 @@ PrefabInstance:
         type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2106677902}
     - target: {fileID: 3091957387444221021, guid: 5e3d5009d5e1b0f46a36602da946a985,
         type: 3}
       propertyPath: m_Name
+      value: ScoreManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091957387444221021, guid: 5e3d5009d5e1b0f46a36602da946a985,
+        type: 3}
+      propertyPath: m_TagString
       value: ScoreManager
       objectReference: {fileID: 0}
     - target: {fileID: 3091957387444221027, guid: 5e3d5009d5e1b0f46a36602da946a985,

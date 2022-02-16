@@ -4937,8 +4937,6 @@ GameObject:
   - component: {fileID: 9598324}
   - component: {fileID: 1760151486}
   - component: {fileID: 1760151485}
-  - component: {fileID: 86740462}
-  - component: {fileID: 86740463}
   - component: {fileID: 217577749}
   m_Layer: 2
   m_Name: mole
@@ -4992,7 +4990,7 @@ BoxCollider:
   m_GameObject: {fileID: 198342}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10.849161, y: 12.17851, z: 10.434454}
   m_Center: {x: 0.051837258, y: -5.965346, z: 0.4665392}
@@ -5010,37 +5008,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   isUp: 0
---- !u!114 &86740462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a3fb0ee1b14754788f3a2e31124c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 6299542787849732622, guid: 6683891cebcf0f148b393fa1d7eea0fa,
-    type: 3}
-  score: 0
---- !u!114 &86740463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a6a0a8adf436e941a65f829103937ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  moleMoveScript: {fileID: 1760151485}
-  scoreManObj: {fileID: 3091957387444221020, guid: 5e3d5009d5e1b0f46a36602da946a985,
-    type: 3}
 --- !u!54 &217577749
 Rigidbody:
   m_ObjectHideFlags: 0

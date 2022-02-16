@@ -9,16 +9,25 @@ using UnityEngine;
 
 public class HammerHitMole : MonoBehaviour
 {
+    //made a few small changes here to make it count score - anna
     public GameObject SpecialEffect;
+    private ScoreManager scoreManagerScript;
 
-    public GameObject Mole;
+    //public GameObject Mole;
+
+    void Start()
+    {
+        scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Mole") return;
+        if (other.gameObject.tag == "Mole")
         {
-            Instantiate(SpecialEffect, GameObject.FindGameObjectWithTag("Mole").transform.position, Quaternion.identity);
-            Destroy(GameObject.FindGameObjectWithTag("Mole"));
+            //Debug.Log("hit");
+            scoreManagerScript.score++;
+            Instantiate(SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 }
