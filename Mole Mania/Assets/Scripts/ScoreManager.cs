@@ -1,5 +1,5 @@
 ﻿/*
- * Jacob Zydorowicz
+ * Jacob Zydorowicz, Anna Brueker
  * Project 2 Mole Mania
  * Controls display of score
  */
@@ -21,6 +21,6 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = score.ToString();
+        scoreText.text = score.ToString(string.Format("000,000", score));
     }
 }

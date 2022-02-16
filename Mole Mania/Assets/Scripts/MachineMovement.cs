@@ -37,7 +37,7 @@ public class MachineMovement : MonoBehaviour
             //turns lower right circle light on and off
             if(Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime-30)
             {
-                lights[1].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(168, 60, 0, 0));
+                lights[1].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
                 lights[1].GetComponent<HitMachine>().canHit = true;
                 //lightsHit++;
 
@@ -45,7 +45,7 @@ public class MachineMovement : MonoBehaviour
             }
             else if(Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 60)
             {
-                lights[1].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+                lights[1].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
                 lights[1].GetComponent<HitMachine>().canHit = false;
                 //circLightsOff(lights[1]);
             }
@@ -53,7 +53,7 @@ public class MachineMovement : MonoBehaviour
             //turns top triangle light on and off
             if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 100)
             {
-                lights[4].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(168, 60, 0, 0));
+                lights[4].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
                 lights[4].transform.position = newTopLightPos;
                 lights[4].GetComponent<HitMachine>().canHit = true;
                 //lightsHit++;
@@ -62,7 +62,7 @@ public class MachineMovement : MonoBehaviour
             }
             else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 120)
             {
-                lights[4].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+                lights[4].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
                 lights[4].transform.position = oldTopPos;
                 lights[4].GetComponent<HitMachine>().canHit = false;
                 //circLightsOff(lights[1]);
@@ -71,7 +71,7 @@ public class MachineMovement : MonoBehaviour
             //turns upper left circle light on and off
             if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 160)
             {
-                lights[2].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(168, 60, 0, 0));
+                lights[2].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
                 lights[2].GetComponent<HitMachine>().canHit = true;
                 //lightsHit++;
                 
@@ -79,7 +79,7 @@ public class MachineMovement : MonoBehaviour
             }
             else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 180)
             {
-                lights[2].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+                lights[2].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
                 lights[2].GetComponent<HitMachine>().canHit = false;
                 //circLightsOff(lights[1]);
             }
@@ -87,7 +87,7 @@ public class MachineMovement : MonoBehaviour
             //will open hatch for other light
             if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 195)
             {
-                lights[0].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(168, 60, 0, 0));
+                lights[0].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
                 lights[0].GetComponent<HitMachine>().canHit = true;
                 //lightsHit++;
                 
@@ -95,7 +95,7 @@ public class MachineMovement : MonoBehaviour
             }
             else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 205)
             {
-                lights[0].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+                lights[0].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
                 lights[0].GetComponent<HitMachine>().canHit = false;
                 //circLightsOff(lights[1]);
             }
@@ -103,7 +103,7 @@ public class MachineMovement : MonoBehaviour
             //turns bottom triangle light on and off
             if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 265)
             {
-                lights[3].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(168, 60, 0, 0));
+                lights[3].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
                 lights[3].transform.position = newBotLightPos;
                 lights[3].GetComponent<HitMachine>().canHit = true;
                 //lightsHit++;
@@ -112,7 +112,7 @@ public class MachineMovement : MonoBehaviour
             }
             else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 285)
             {
-                lights[3].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+                lights[3].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
                 lights[3].transform.position = oldBotPos;
                 lights[3].GetComponent<HitMachine>().canHit = false;
                 //circLightsOff(lights[1]);
