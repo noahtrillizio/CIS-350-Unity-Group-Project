@@ -10,6 +10,9 @@ TagManager:
   - Hammer
   - Mole
   - SpawnManager
+  - ScoreText
+  - topTriLight
+  - botTriLight
   layers:
   - Default
   - TransparentFX

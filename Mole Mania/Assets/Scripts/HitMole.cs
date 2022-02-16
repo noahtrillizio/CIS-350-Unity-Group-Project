@@ -9,13 +9,14 @@ using UnityEngine;
 
 public class HitMole : MonoBehaviour
 {
-
+    public int score;
     public MoleMove moleMoveScript;
 
 
     public ScoreManager scoreManObj;
     private void OnMouseDown()
     {
+        //object click detection based on https://answers.unity.com/questions/1128405/how-do-i-detect-a-click-on-an-object-with-a-partic.html
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -24,8 +25,8 @@ public class HitMole : MonoBehaviour
             //if mole is clicked on, resets mole & raise score
             if (moleMoveScript.isUp && hit.collider.CompareTag("Mole"))
             {
-
-                scoreManObj.score++; //as it is now, you cannot attach the score manager to the prefabs, which is what's breaking the spawn manager 
+                score++;
+                //scoreManObj.score++; //as it is now, you cannot attach the score manager to the prefabs, which is what's breaking the spawn manager 
                                      //it only works on the test mole.
                                      //if i delete this line and the reference to the score manager, it works but no longer counts score. - anna
 
