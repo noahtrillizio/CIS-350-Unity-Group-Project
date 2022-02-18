@@ -6,140 +6,143 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MachineMovement : MonoBehaviour
 {
     
     private int lightsHit;
-
-    Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos;
+    private int phaseNum;
+    private int correctPatterns;
+    private bool correctPattern;
+    Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos, oldHatchPos, newHatchPos;
     public GameObject[] lights;
-   
     public Timer timer;
+    private ScoreManager scoreMan;
+    private HammerSwing hammer;
+    public GameObject startText;
     
    
     void Start()
     {
+        correctPattern = false;
+        hammer = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerSwing>();
+        scoreMan = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        startText.SetActive(false);
+        phaseNum = 0;
+
         //gets current and future positons of moving lights
         newTopLightPos = new Vector3(lights[4].gameObject.transform.position.x, lights[4].gameObject.transform.position.y, lights[4].gameObject.transform.position.z) + new Vector3(0f, 3f, 0f);
         oldTopPos = new Vector3(lights[4].gameObject.transform.position.x, lights[4].gameObject.transform.position.y, lights[4].gameObject.transform.position.z);
         newBotLightPos = new Vector3(lights[3].gameObject.transform.position.x, lights[3].gameObject.transform.position.y, lights[3].gameObject.transform.position.z) + new Vector3(2f, 0f, 0f);
         oldBotPos = new Vector3(lights[3].gameObject.transform.position.x, lights[3].gameObject.transform.position.y, lights[3].gameObject.transform.position.z);
+        oldHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z);
+        newHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z) + new Vector3(0f, 4f, 0f);
     }
 
    
     void Update()
     {
-  
-        //determines when light events should be active and inactive
-        if (timer.timeRemaining > 0 && !timer.gameOver)
+        //starts "phase 0" of machine where player goes through tutorial with fake moles
+        if (phaseNum == 0 && scoreMan.score >= 10)
         {
-            //turns lower right circle light on and off
-            if(Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime-30)
-            {
-                lights[1].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
-                lights[1].GetComponent<HitMachine>().canHit = true;
-                //lightsHit++;
+            hammer.canSwing = false;
+            startText.SetActive(true);
 
-                //circLightsOn(lights[1]);
-            }
-            else if(Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 60)
+            //when player hits space when prompted, game starts
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                lights[1].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
-                lights[1].GetComponent<HitMachine>().canHit = false;
-                //circLightsOff(lights[1]);
+                timer.timerIsRunning = true;
+                hammer.canSwing = true;
+                startText.SetActive(false); ;
+                scoreMan.score = 0;
+                phaseNum++;
             }
+        }
 
-            //turns top triangle light on and off
-            if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 100)
+        //"Phase 1" of machine where player plays simons says with machine lights
+        if (phaseNum == 1 && !timer.gameOver)
+        {
+            int[] lightPattern = {1,4,2,0,3};
+            while(!correctPattern)
             {
-                lights[4].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
-                lights[4].transform.position = newTopLightPos;
-                lights[4].GetComponent<HitMachine>().canHit = true;
-                //lightsHit++;
-                
-                //circLightsOn(lights[1]);
+                phase1Pattern(lightPattern);
             }
-            else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 120)
-            {
-                lights[4].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
-                lights[4].transform.position = oldTopPos;
-                lights[4].GetComponent<HitMachine>().canHit = false;
-                //circLightsOff(lights[1]);
-            }
+        }
+     
+    }
 
-            //turns upper left circle light on and off
-            if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 160)
-            {
-                lights[2].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
-                lights[2].GetComponent<HitMachine>().canHit = true;
-                //lightsHit++;
-                
-                //circLightsOn(lights[1]);
-            }
-            else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 180)
-            {
-                lights[2].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
-                lights[2].GetComponent<HitMachine>().canHit = false;
-                //circLightsOff(lights[1]);
-            }
 
-            //will open hatch for other light
-            if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 195)
-            {
-                lights[0].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
-                lights[0].GetComponent<HitMachine>().canHit = true;
-                //lightsHit++;
-                
-                //circLightsOn(lights[1]);
-            }
-            else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 205)
-            {
-                lights[0].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
-                lights[0].GetComponent<HitMachine>().canHit = false;
-                //circLightsOff(lights[1]);
-            }
+    public void lightsActivate(GameObject currentLight)
+    {
+        if(currentLight.CompareTag("topTriLight"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
+            currentLight.transform.position = newTopLightPos;
+            currentLight.GetComponent<HitMachine>().canHit = true;
+        }
+        else if(currentLight.CompareTag("botTriLight"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
+            currentLight.transform.position = newBotLightPos;
+            currentLight.GetComponent<HitMachine>().canHit = true;
+        }
+        else if(currentLight.CompareTag("TriangleLights"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
+            currentLight.transform.position = newHatchPos;
+            currentLight.GetComponent<HitMachine>().canHit = true;
+        }
+        else if(currentLight.CompareTag("CircleLights"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
+            currentLight.GetComponent<HitMachine>().canHit = true;
+        }
+        
+    }
 
-            //turns bottom triangle light on and off
-            if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 265)
-            {
-                lights[3].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(255, 40, 0, 0));
-                lights[3].transform.position = newBotLightPos;
-                lights[3].GetComponent<HitMachine>().canHit = true;
-                //lightsHit++;
-               
-                //circLightsOn(lights[1]);
-            }
-            else if (Mathf.FloorToInt(timer.timeRemaining) == timer.maxTime - 285)
-            {
-                lights[3].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(146, 0, 3, 0));
-                lights[3].transform.position = oldBotPos;
-                lights[3].GetComponent<HitMachine>().canHit = false;
-                //circLightsOff(lights[1]);
-            }
+    public void lightsDeactivate(GameObject currentLight)
+    {
+        if (currentLight.CompareTag("topTriLight"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.transform.position = oldTopPos;
+            currentLight.GetComponent<HitMachine>().canHit = false;
+        }
+        else if (currentLight.CompareTag("botTriLight"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.transform.position = oldBotPos;
+            currentLight.GetComponent<HitMachine>().canHit = false;
+        }
+        else if (currentLight.CompareTag("TriangleLights"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.transform.position = oldHatchPos;
+            currentLight.GetComponent<HitMachine>().canHit = false;
+        }
+        else if(currentLight.CompareTag("CircleLights"))
+        {
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.GetComponent<HitMachine>().canHit = false;
         }
     }
 
-    public void circLightsOn(GameObject circLight)
+    //displays the light order based off of an array that holds the order
+    public void phase1Pattern(int[] lightOrder)
     {
-
+        for(int i = 0; i< lights.Length;i++)
+        {
+            lightsActivate(lights[lightOrder[i]]);
+            delayCoroutine();
+            lightsDeactivate(lights[lightOrder[i]]);
+        }
     }
 
-    public void circLightsOff(GameObject circLight)
+    IEnumerator delayCoroutine()
     {
-
+        yield return new WaitForSeconds(2f);
     }
-
-    public void triLightsActivate(GameObject triLight)
-    {
-
-    }
-
-    public void triLightsDeactivate(GameObject triLight)
-    {
-
-    }
-
 
 }
 /*Notes:
