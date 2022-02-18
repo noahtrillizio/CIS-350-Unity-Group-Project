@@ -20,8 +20,6 @@ public class HitMachine : MonoBehaviour
     public GameObject SpecialEffect;
     public Material lightColor;
 
-    public AudioSource MachineHitSound;
-
     private void Start()
     {
         //sets all lights to green by default
@@ -67,7 +65,6 @@ public class HitMachine : MonoBehaviour
                     //gameObject.transform.position = gameObject.transform.position + new Vector3(2f, 0f, 0f);
                 }
                 Instantiate(SpecialEffect, lightOriginPos, Quaternion.identity);
-                MachineHitSound.Play();
             }
 
 
