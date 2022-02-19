@@ -22,6 +22,8 @@ public class HitMachine : MonoBehaviour
     public GameObject SpecialEffect;
     public Material lightColor;
 
+    public AudioSource MachineHitSound;
+
     private void Start()
     {
         canHit = false;
@@ -74,7 +76,9 @@ public class HitMachine : MonoBehaviour
                     gameObject.transform.position = lightOriginPos;
                     queueLight(4);
                 }
-                Instantiate(SpecialEffect, lightOriginPos, Quaternion.identity);
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineHitSound.Play();
             }
 
 

@@ -13,11 +13,28 @@ public class HammerHitMole : MonoBehaviour
     public GameObject SpecialEffect;
     private ScoreManager scoreManagerScript;
 
-    //public GameObject Mole;
+    public AudioSource MolesHit;
+    public AudioSource BackgroundMusic;
 
     void Start()
     {
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+    }
+
+    void Update()
+    {
+        if (scoreManagerScript.score >= 15)
+        {
+            BackgroundMusic.pitch = .25f;
+        }
+        else if (scoreManagerScript.score >= 10)
+        {
+            BackgroundMusic.pitch = .5f;
+        }
+        else if (scoreManagerScript.score >= 5)
+        {
+            BackgroundMusic.pitch = .75f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +43,9 @@ public class HammerHitMole : MonoBehaviour
         {
             //Debug.Log("hit");
             scoreManagerScript.score++;
-            Instantiate(SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
+            MolesHit.Play();
+            GameObject clone = (GameObject)Instantiate (SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
+            Destroy(clone, 1.0f);
             Destroy(other.gameObject);
         }
     }
