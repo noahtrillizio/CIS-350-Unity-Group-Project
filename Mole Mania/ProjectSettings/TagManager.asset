@@ -17,6 +17,7 @@ TagManager:
   - ScoreManager
   - StartText
   - Machine
+  - TutorialManager
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Caleb Kahn
+ * Project 2
+ * Swings the hammer using ray cast to the position on the machine
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class HammerSwing : MonoBehaviour
@@ -77,7 +82,7 @@ public class HammerSwing : MonoBehaviour
                     {
                         if (pos.y < lowYTop)
                         {//Vertical Swing
-                            transform.position = new Vector3(pos.x + +HammerDistance, pos.y, pos.z + .4f);
+                            transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
                             transform.eulerAngles = vertRot;
                             swingVert = true;
 
@@ -97,7 +102,7 @@ public class HammerSwing : MonoBehaviour
                     }
                     else
                     {//Virtical Swing
-                        transform.position = new Vector3(pos.x + +HammerDistance, pos.y, pos.z + .4f);
+                        transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
                         transform.eulerAngles = vertRot;
                         swingVert = true;
                     }
