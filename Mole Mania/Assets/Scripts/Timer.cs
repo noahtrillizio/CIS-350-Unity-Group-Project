@@ -1,7 +1,7 @@
 ﻿/*
  * Jacob Zydorowicz, Noah Trillizio
  * Project 2 Mole Mania
- * Timer for game
+ * Timer for game in seconds
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +11,10 @@ public class Timer : MonoBehaviour
 {
     //Timer based on article : https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
     
+    //max and remaining time entered in seconds
     public int  maxTime;
     public float timeRemaining;
+
     private float mins;
     private float secs;
     public bool timerIsRunning;
@@ -25,7 +27,7 @@ public class Timer : MonoBehaviour
         maxTime = Mathf.FloorToInt(timeRemaining);
         display();
         //change later to when implementing tutorial
-        timerIsRunning = true;
+        timerIsRunning = false;
 
         gameOver = false;
         
@@ -49,11 +51,13 @@ public class Timer : MonoBehaviour
                 secs = 0;
                 timeRemaining = 0;
                 timerIsRunning = false;
+                gameOver = true;
             }
             display();
         }
     }
 
+    //displays time in minutes and seconds
     public void display()
     {
         mins = Mathf.FloorToInt(timeRemaining / 60);

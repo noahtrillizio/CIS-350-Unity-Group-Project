@@ -15,6 +15,9 @@ TagManager:
   - botTriLight
   - DisplayScoreText
   - ScoreManager
+  - StartText
+  - Machine
+  - TutorialManager
   layers:
   - Default
   - TransparentFX

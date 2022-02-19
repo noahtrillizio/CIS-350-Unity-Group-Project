@@ -10,6 +10,8 @@ using UnityEngine;
 public class HitMachine : MonoBehaviour
 {
     public bool canHit;
+    private int lightNum;
+    private MachineMovement machineScript;
 
     private Vector3 lightOriginPos;
 
@@ -20,16 +22,10 @@ public class HitMachine : MonoBehaviour
     public GameObject SpecialEffect;
     public Material lightColor;
 
-    public AudioSource MachineHitSound;
-
     private void Start()
     {
-        //sets all lights to green by default
-        lightColor = gameObject.GetComponent<Renderer>().material;
-        lightColor.SetColor("_EmissionColor", Color.red);
-
         canHit = false;
-
+        lightColor = GetComponent<Renderer>().material;
         lightOriginPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
        
     }
@@ -46,28 +42,39 @@ public class HitMachine : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //if machine spot is clicked, resets lights
-            if (canHit)
+            if (canHit && hit.collider.name != "Hatch")
             {
                 Debug.Log("hit");
                 canHit = false;
                 lightColor.SetColor("_EmissionColor", Color.black);
                
-                
-                if(hit.collider.name == "topTriLights")
+                if(hit.collider.name == "Hatch Light")
                 {
-
-                    gameObject.transform.position = lightOriginPos;
-                    //gameObject.transform.position = gameObject.transform.position + new Vector3(0f , 3f, 0f);
-
-
+                    queueLight(0);
+                    
+                }
+                if (hit.collider.name == "LRLight")
+                {
+                    queueLight(1);
+                    
+                }
+                if (hit.collider.name == "ULLight")
+                {
+                    queueLight(2);
+                    
                 }
                 else if (hit.collider.name == "bottomTriLights")
                 {
                     gameObject.transform.position = lightOriginPos;
-                    //gameObject.transform.position = gameObject.transform.position + new Vector3(2f, 0f, 0f);
+                    queueLight(3);
+                    
+                }
+                else if (hit.collider.name == "topTriLights")
+                {
+                    gameObject.transform.position = lightOriginPos;
+                    queueLight(4);
                 }
                 Instantiate(SpecialEffect, lightOriginPos, Quaternion.identity);
-                MachineHitSound.Play();
             }
 
 
@@ -76,4 +83,20 @@ public class HitMachine : MonoBehaviour
 
        
     }
+
+    //enqueues corresponding light number from machine light array based on which light is hit
+    private void queueLight(int lightNum)
+    {
+        if (machineScript.lightQueue.Count <= 5)
+        {
+            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Enqueue(lightNum);
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Clear();
+            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Enqueue(lightNum);
+        }
+    }
+
+ 
 }
