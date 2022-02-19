@@ -49,8 +49,11 @@ public class HitMachine : MonoBehaviour
                 Debug.Log("hit");
                 canHit = false;
                 lightColor.SetColor("_EmissionColor", Color.black);
-               
-                if(hit.collider.name == "Hatch Light")
+
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineHitSound.Play();
+                if (hit.collider.name == "Hatch Light")
                 {
                     queueLight(0);
                     
@@ -76,9 +79,6 @@ public class HitMachine : MonoBehaviour
                     gameObject.transform.position = lightOriginPos;
                     queueLight(4);
                 }
-                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
-                Destroy(clone, 1.0f);
-                MachineHitSound.Play();
             }
 
 
