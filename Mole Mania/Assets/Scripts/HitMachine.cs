@@ -11,6 +11,7 @@ public class HitMachine : MonoBehaviour
 {
     public bool canHit;
     private int lightNum;
+    private MachineMovement machineScript;
 
     private Vector3 lightOriginPos;
 
@@ -24,7 +25,7 @@ public class HitMachine : MonoBehaviour
     private void Start()
     {
         canHit = false;
-
+        lightColor = GetComponent<Renderer>().material;
         lightOriginPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
        
     }
@@ -49,25 +50,29 @@ public class HitMachine : MonoBehaviour
                
                 if(hit.collider.name == "Hatch Light")
                 {
-                    lightNum = 0;
+                    queueLight(0);
+                    
                 }
                 if (hit.collider.name == "LRLight")
                 {
-                    lightNum = 1;
+                    queueLight(1);
+                    
                 }
                 if (hit.collider.name == "ULLight")
                 {
-                    lightNum = 2;
+                    queueLight(2);
+                    
                 }
                 else if (hit.collider.name == "bottomTriLights")
                 {
                     gameObject.transform.position = lightOriginPos;
-                    lightNum = 3;
+                    queueLight(3);
+                    
                 }
                 else if (hit.collider.name == "topTriLights")
                 {
                     gameObject.transform.position = lightOriginPos;
-                    lightNum = 4;
+                    queueLight(4);
                 }
                 Instantiate(SpecialEffect, lightOriginPos, Quaternion.identity);
             }
@@ -78,4 +83,20 @@ public class HitMachine : MonoBehaviour
 
        
     }
+
+    //enqueues corresponding light number from machine light array based on which light is hit
+    private void queueLight(int lightNum)
+    {
+        if (machineScript.lightQueue.Count <= 5)
+        {
+            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Enqueue(lightNum);
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Clear();
+            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Enqueue(lightNum);
+        }
+    }
+
+ 
 }

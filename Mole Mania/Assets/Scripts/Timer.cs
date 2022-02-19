@@ -57,6 +57,7 @@ public class Timer : MonoBehaviour
         }
     }
 
+    //displays time in minutes and seconds
     public void display()
     {
         mins = Mathf.FloorToInt(timeRemaining / 60);

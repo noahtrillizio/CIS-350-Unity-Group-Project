@@ -16,6 +16,7 @@ TagManager:
   - DisplayScoreText
   - ScoreManager
   - StartText
+  - Machine
   layers:
   - Default
   - TransparentFX
