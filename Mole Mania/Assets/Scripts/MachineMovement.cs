@@ -26,11 +26,12 @@ public class MachineMovement : MonoBehaviour
     private ScoreManager scoreMan;
     private HammerSwing hammer;
     public Queue<int> lightQueue;
-
+    
 
 
     void Start()
     {
+
         activePattern = false;
         hammer = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerSwing>();
         scoreMan = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();

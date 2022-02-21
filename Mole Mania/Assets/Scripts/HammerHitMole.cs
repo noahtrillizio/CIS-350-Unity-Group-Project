@@ -44,9 +44,10 @@ public class HammerHitMole : MonoBehaviour
             //Debug.Log("hit");
             scoreManagerScript.score++;
             MolesHit.Play();
-            GameObject clone = (GameObject)Instantiate (SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
-            Destroy(clone, 1.0f);
-            Destroy(other.gameObject);
+            /* GameObject clone = (GameObject)Instantiate (SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
+             Destroy(clone, 1.0f);
+             Destroy(other.gameObject);*/
+            Destroy(gameObject);
         }
     }
 }

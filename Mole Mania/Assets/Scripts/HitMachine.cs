@@ -26,6 +26,7 @@ public class HitMachine : MonoBehaviour
 
     private void Start()
     {
+        machineScript = GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>();
         canHit = false;
         lightColor = GetComponent<Renderer>().material;
         lightOriginPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
@@ -93,12 +94,12 @@ public class HitMachine : MonoBehaviour
     {
         if (machineScript.lightQueue.Count <= 5)
         {
-            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Enqueue(lightNum);
+            machineScript.lightQueue.Enqueue(lightNum);
         }
         else
         {
-            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Clear();
-            GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>().lightQueue.Enqueue(lightNum);
+            machineScript.lightQueue.Clear();
+            machineScript.lightQueue.Enqueue(lightNum);
         }
     }
 
