@@ -15,7 +15,9 @@ public class SpawnManager : MonoBehaviour
     //where the mole positions are stored
     public float[] spawnX;
     public float[] spawnZ;
+    public bool[] moleHere;
     public float spawnPosY = 17;
+    public int locationIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -41,13 +43,17 @@ public class SpawnManager : MonoBehaviour
     void SpawnMole()
     {
         //pick mole hole
-        int locationIndex = Random.Range(0, spawnX.Length);
+        locationIndex = Random.Range(0, spawnX.Length);
 
         //generate a random spawn position from mole holes
         Vector3 spawnPos = new Vector3(spawnX[locationIndex], spawnPosY, spawnZ[locationIndex]);
 
         //spawn mole
-        Instantiate(moles, spawnPos, moles.transform.rotation);
+        if (!moleHere[locationIndex])
+        {
+            Instantiate(moles, spawnPos, moles.transform.rotation);
+            moleHere[locationIndex] = true;
+        }
     }
 
 }

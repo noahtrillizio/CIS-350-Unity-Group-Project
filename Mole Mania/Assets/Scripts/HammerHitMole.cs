@@ -1,5 +1,5 @@
 ﻿/*
- * Noah Trillizio
+ * Noah Trillizio & Anna Breuker
  * Project 2 Mole Mania
  * Makes blood splatter when hammer hits the mole
  */
@@ -9,16 +9,18 @@ using UnityEngine;
 
 public class HammerHitMole : MonoBehaviour
 {
-    //made a few small changes here to make it count score - anna
     public GameObject SpecialEffect;
     private ScoreManager scoreManagerScript;
+    private SpawnManager spawnManagerScript;
 
-    public AudioSource MolesHit;
+    public AudioSource MoleRelatedSFX;
+    public AudioClip molesHit;
     public AudioSource BackgroundMusic;
 
     void Start()
     {
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
     }
 
     void Update()
@@ -42,12 +44,13 @@ public class HammerHitMole : MonoBehaviour
         if (other.gameObject.tag == "Mole")
         {
             //Debug.Log("hit");
+            spawnManagerScript.moleHere[spawnManagerScript.locationIndex] = false;
             scoreManagerScript.score++;
-            MolesHit.Play();
-            /* GameObject clone = (GameObject)Instantiate (SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
+            MoleRelatedSFX.PlayOneShot(molesHit, 1.0f);
+            GameObject clone = (GameObject)Instantiate (SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
              Destroy(clone, 1.0f);
-             Destroy(other.gameObject);*/
-            Destroy(gameObject);
+             Destroy(other.gameObject);
+            //Destroy(gameObject);
         }
     }
 }

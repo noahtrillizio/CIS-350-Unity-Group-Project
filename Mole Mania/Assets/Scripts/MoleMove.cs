@@ -14,12 +14,22 @@ public class MoleMove : MonoBehaviour
 {
     public float speed;
     public bool isUp;
+    private SpawnManager spawnManagerScript;
+
+    private float yPos;
+    private float xPos;
+    private float zPos;
     // Start is called before the first frame update
     void Start()
     {
         isUp = false;
         //Debug.Log("is this script even running");
         StartCoroutine(MoveMoleCoroutine());
+        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+
+        xPos = spawnManagerScript.spawnX[spawnManagerScript.locationIndex];
+        yPos = spawnManagerScript.spawnPosY;
+        zPos = spawnManagerScript.spawnZ[spawnManagerScript.locationIndex];
     }
 
     IEnumerator MoveMoleCoroutine()
@@ -41,12 +51,12 @@ public class MoleMove : MonoBehaviour
     {
         if (!isUp)
         {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            transform.position = new Vector3(xPos, yPos + speed, zPos); 
             isUp = true;
         }
         else 
         {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            transform.position = new Vector3(xPos, yPos, zPos);
             isUp = false;
         }
     }

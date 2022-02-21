@@ -22,7 +22,8 @@ public class HitMachine : MonoBehaviour
     public GameObject SpecialEffect;
     public Material lightColor;
 
-    public AudioSource MachineHitSound;
+    public AudioSource MachineSFX;
+    public AudioClip machineHitSound;
 
     private void Start()
     {
@@ -53,7 +54,8 @@ public class HitMachine : MonoBehaviour
 
                 GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
                 Destroy(clone, 1.0f);
-                MachineHitSound.Play();
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f); //hi i changed this, it should work but the script never? gets to this point?
+
                 if (hit.collider.name == "Hatch Light")
                 {
                     queueLight(0);
