@@ -17,6 +17,8 @@ public class HammerHitMole : MonoBehaviour
     public AudioClip molesHit;
     public AudioSource BackgroundMusic;
 
+    private float soundChanger;
+
     void Start()
     {
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
@@ -25,17 +27,10 @@ public class HammerHitMole : MonoBehaviour
 
     void Update()
     {
-        if (scoreManagerScript.score >= 15)
+        soundChanger = (scoreManagerScript.score) * .01f;
+        if (scoreManagerScript.score >= 3)
         {
-            BackgroundMusic.pitch = .25f;
-        }
-        else if (scoreManagerScript.score >= 10)
-        {
-            BackgroundMusic.pitch = .5f;
-        }
-        else if (scoreManagerScript.score >= 5)
-        {
-            BackgroundMusic.pitch = .75f;
+            BackgroundMusic.pitch = (1f - soundChanger) + .03f;
         }
     }
 
