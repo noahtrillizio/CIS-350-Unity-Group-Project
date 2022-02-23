@@ -19,8 +19,11 @@ public class TutorialManager : MonoBehaviour
     public int posMovement = 0;
     public float timer = 0;
     private TutorialHammerSwing hammer;
+    private float textboxUpdater = 0;
 
     public bool mole = false;
+
+    public AudioSource BackgroundMusic;
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class TutorialManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) {
                 startingText.enabled = false;
                 posMovement++;
+                BackgroundMusic.Play();
             }
         }
         else if (posMovement == 1) {
@@ -63,14 +67,26 @@ public class TutorialManager : MonoBehaviour
         }
         else if (posMovement == 3) {
             tutorialText.enabled = true;
-            hammer.canSwing = true;
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                posMovement = 10;
-                tutorialText.enabled = false;
+            //if (Input.GetKeyDown(KeyCode.Space)) {
+            //    posMovement = 10;
+            //    tutorialText.enabled = false;
+            //}
+            //else if (hammer.swingHori || hammer.swingVert) {
+            //    posMovement++;
+            //    tutorialText.text = "Good Job!\nNow hit the mole";
+            //    mole = true;
+            //}
+            if (Input.GetKeyDown(KeyCode.Space)&& textboxUpdater == 0)
+            {
+                tutorialText.text = "You must be the legendary wacker of moles!";
+                textboxUpdater++;
             }
-            else if (hammer.swingHori || hammer.swingVert) {
+            else if (Input.GetKeyDown(KeyCode.Space) && textboxUpdater == 1)
+            {
                 posMovement++;
-                tutorialText.text = "Good Job!\nNow hit the mole";
+                hammer.canSwing = true;
+                tutorialText.text = "Now take this legendary hammer of mole wacking, and wack this mole back into the darkness from which he came!";
+                //textboxUpdater++;
                 mole = true;
             }
         }
@@ -78,9 +94,22 @@ public class TutorialManager : MonoBehaviour
             timer += Time.deltaTime;
         }
         else if (posMovement == 5) {
-            tutorialText.text = "Great\nNow for the real game";
-            timer += Time.deltaTime;
-            if (timer >= 3){
+            if (textboxUpdater == 1)
+            {
+                tutorialText.text = "Amazing!\nYou are truly the one destined to whack them all!";
+                textboxUpdater++;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && textboxUpdater == 2)
+            {
+                tutorialText.text = "If you'll come with me your prowess is required elsewhere";
+                textboxUpdater++;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && textboxUpdater == 3)
+            {
+                textboxUpdater++;
+            }
+            else if (textboxUpdater == 4)
+            {
                 posMovement++;
                 tutorialText.enabled = false;
                 timer = 0;
