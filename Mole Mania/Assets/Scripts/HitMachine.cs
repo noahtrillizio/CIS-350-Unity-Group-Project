@@ -58,29 +58,29 @@ public class HitMachine : MonoBehaviour
 
                 if (hit.collider.name == "Hatch Light")
                 {
-                    queueLight(0);
-                    
+                    machineScript.lightQueue.Enqueue(0);
+                    GameObject.FindGameObjectWithTag("Hatch").transform.position = machineScript.oldHatchPos;
                 }
                 if (hit.collider.name == "LRLight")
                 {
-                    queueLight(1);
+                    machineScript.lightQueue.Enqueue(1);
                     
                 }
                 if (hit.collider.name == "ULLight")
                 {
-                    queueLight(2);
+                    machineScript.lightQueue.Enqueue(2);
                     
                 }
                 else if (hit.collider.name == "bottomTriLights")
                 {
                     gameObject.transform.position = lightOriginPos;
-                    queueLight(3);
+                    machineScript.lightQueue.Enqueue(3);
                     
                 }
                 else if (hit.collider.name == "topTriLights")
                 {
                     gameObject.transform.position = lightOriginPos;
-                    queueLight(4);
+                    machineScript.lightQueue.Enqueue(4);
                 }
             }
 
@@ -90,20 +90,4 @@ public class HitMachine : MonoBehaviour
 
        
     }
-
-    //enqueues corresponding light number from machine light array based on which light is hit
-    private void queueLight(int lightNum)
-    {
-        if (machineScript.lightQueue.Count <= 5)
-        {
-            machineScript.lightQueue.Enqueue(lightNum);
-        }
-        else
-        {
-            machineScript.lightQueue.Clear();
-            machineScript.lightQueue.Enqueue(lightNum);
-        }
-    }
-
- 
 }

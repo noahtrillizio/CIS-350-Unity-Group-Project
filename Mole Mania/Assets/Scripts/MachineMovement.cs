@@ -10,38 +10,37 @@ using UnityEngine.UI;
 
 public class MachineMovement : MonoBehaviour
 {
-
-    private int phaseNum;
-    private int correctPatterns;
+    private int correctPats;
+    public int phaseNum;
 
     private bool activePattern;
     bool correctPattern;
 
 
 
-    Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos, oldHatchPos, newHatchPos;
+    public Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos, oldHatchPos, newHatchPos;
 
     public GameObject[] lights;
-    public GameObject startText;
+   
 
     public Timer timer;
     private ScoreManager scoreMan;
-    private HammerSwing hammer;
 
-    private int[] lightCheck;
     public Queue<int> lightQueue;
-    
+
+    public Material machineBroke, machineDead;
+
 
 
     void Start()
     {
+        correctPats = 0;
         correctPattern = false;
         lightQueue = new Queue<int> { };
         activePattern = false;
-        hammer = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerSwing>();
         scoreMan = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        startText.SetActive(false);
         phaseNum = 0;
+        correctPats = 0;
 
         //gets current and future positons of moving lights
         newTopLightPos = new Vector3(lights[4].gameObject.transform.position.x, lights[4].gameObject.transform.position.y, lights[4].gameObject.transform.position.z) + new Vector3(0f, 3f, 0f);
@@ -51,32 +50,46 @@ public class MachineMovement : MonoBehaviour
         oldBotPos = new Vector3(lights[3].gameObject.transform.position.x, lights[3].gameObject.transform.position.y, lights[3].gameObject.transform.position.z);
 
         oldHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z);
-        newHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z) + new Vector3(0f, 4f, 0f);
+        newHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z) + new Vector3(0f, -3f, 0f);
+
     }
 
    
     void Update()
     {
         //starts "phase 0" of machine where player goes through tutorial with fake moles
-        if (phaseNum == 0 && scoreMan.score >= 2)
+        if (phaseNum == 0 && scoreMan.score == 0)
         {
-            
-                phaseNum++;
-            
+                phaseNum++;   
         }
 
         //"Phase 1" of machine where player plays simons says with machine lights
         if (phaseNum == 1 && !timer.gameOver)
         {
             int[] lightPattern = {1,4,2,0,3};
+           
             if(!activePattern)
             {
                 activePattern = true;
                 StartCoroutine(patternCoroutine(lightPattern));
             }
-            
 
+            if(correctPats == 2)
+            {
+               
+                gameObject.GetComponent<Renderer>().material = machineBroke;
+            }
 
+            if (correctPats == 3)
+            {
+             
+                gameObject.GetComponent<Renderer>().material = machineDead;
+            }
+
+            if(correctPats == 4 )
+            {
+                timer.gameOver = true;
+            }
         }
      
     }
@@ -98,7 +111,8 @@ public class MachineMovement : MonoBehaviour
         else if(currentLight.CompareTag("TriangleLights"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
-            currentLight.transform.position = newHatchPos;
+            GameObject.FindGameObjectWithTag("Hatch").transform.position = newHatchPos;
+
         }
         else if(currentLight.CompareTag("CircleLights"))
         {
@@ -114,17 +128,15 @@ public class MachineMovement : MonoBehaviour
         if (currentLight.CompareTag("topTriLight"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
-            currentLight.transform.position = oldTopPos;
         }
         else if (currentLight.CompareTag("botTriLight"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
-            currentLight.transform.position = oldBotPos;
         }
         else if (currentLight.CompareTag("TriangleLights"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
-            currentLight.transform.position = oldHatchPos;
+
         }
         else if(currentLight.CompareTag("CircleLights"))
         {
@@ -132,16 +144,16 @@ public class MachineMovement : MonoBehaviour
         }
     }
 
- 
-    //Could be a better way to do this, but decided to use Coroutine for phase patterns
-    //Parameter lightOrder, an int array with the index numbers of the lights based on pattern
     IEnumerator patternCoroutine(int[] lightOrder)
     {
         do
         {
+            yield return new WaitForSeconds(5f);
+
             for (int i = 0; i < lightOrder.Length; i++)
             {
                 lights[i].GetComponent<HitMachine>().canHit = false;
+                lightsDeactivate(lights[i]);
             }
 
             //activates and deactivates lights in order based on parameter
@@ -160,25 +172,38 @@ public class MachineMovement : MonoBehaviour
 
             yield return new WaitForSeconds(10f);
 
-            lightCheck = lightQueue.ToArray();
+            int []lightCheck = lightQueue.ToArray();
+
+            foreach(int lightInd in lightCheck)
+            {
+                Debug.Log(lightInd);
+            }
 
             for (int i = 0; i < lightCheck.Length; i++)
             {
-                if (lightCheck[i] == lightOrder[i])
+                if (!lightCheck[i].Equals(lightOrder[i]))
                 {
-                    correctPattern = true;
+                    correctPattern = false;
+                    break;
                 }
                 else
                 {
-                    correctPattern = false;
+                    correctPattern = true;
                 }
+               
             }
-
+            
+            Debug.Log(correctPattern);
+            lightQueue.Clear();
         }
         while (!correctPattern);
 
+        correctPats++;
+        Debug.Log(correctPats);
         activePattern = false;
 
+        
+        
 
 
     }

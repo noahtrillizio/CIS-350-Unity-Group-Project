@@ -26,7 +26,6 @@ public class Timer : MonoBehaviour
     {
         maxTime = Mathf.FloorToInt(timeRemaining);
         display();
-        //change later to when implementing tutorial
         timerIsRunning = false;
 
         gameOver = false;

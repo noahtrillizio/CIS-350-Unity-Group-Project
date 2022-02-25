@@ -13,6 +13,7 @@ public class HammerHitMole : MonoBehaviour
     public GameObject SpecialEffect;
     private ScoreManager scoreManagerScript;
     private SpawnManager spawnManagerScript;
+    private Timer gameTime;
 
     public AudioSource MoleRelatedSFX;
     public AudioClip molesHit;
@@ -30,6 +31,7 @@ public class HammerHitMole : MonoBehaviour
 
     void Start()
     {
+        gameTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         scoreText.gameObject.SetActive(false);
@@ -51,6 +53,7 @@ public class HammerHitMole : MonoBehaviour
         {
             HitGround.Play();
             CurrentSounds++;
+            gameTime.timerIsRunning = true;
             scoreText.gameObject.SetActive(true);
             timeText.gameObject.SetActive(true);
         }

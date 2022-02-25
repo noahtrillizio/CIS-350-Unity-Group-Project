@@ -465,7 +465,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_MotionVectors: 1
+  m_MotionVectors: 0
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 1
@@ -555,14 +555,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d3f9034b6866b408c53b6ca451a1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phaseNum: 0
+  newTopLightPos: {x: 0, y: 0, z: 0}
+  oldTopPos: {x: 0, y: 0, z: 0}
+  newBotLightPos: {x: 0, y: 0, z: 0}
+  oldBotPos: {x: 0, y: 0, z: 0}
+  oldHatchPos: {x: 0, y: 0, z: 0}
+  newHatchPos: {x: 0, y: 0, z: 0}
   lights:
   - {fileID: 1000011912328504}
   - {fileID: 66503852}
   - {fileID: 644086463}
   - {fileID: 1000011497516464}
   - {fileID: 1000011065765387}
-  startText: {fileID: 0}
   timer: {fileID: 705350056}
+  machineBroke: {fileID: 2100000, guid: c1f43dd8b97605847a7b2f322c934ef7, type: 2}
+  machineDead: {fileID: 2100000, guid: feaae20078061a047a69084691029f89, type: 2}
 --- !u!114 &534593007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1048,7 @@ GameObject:
   - component: {fileID: 705350056}
   m_Layer: 0
   m_Name: Timer
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1287,6 +1295,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moles: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+  fakeMoles: {fileID: 9001911591384743816, guid: 9c31feb6cecbb4f4a85cf5cbbab211f9,
+    type: 3}
+  machineScript: {fileID: 534593006}
   spawnX:
   - 1
   - -7.5
@@ -3567,6 +3578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 000,000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691143461482151509, guid: 6683891cebcf0f148b393fa1d7eea0fa,
+        type: 3}
+      propertyPath: m_MotionVectors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6299542787849732616, guid: 6683891cebcf0f148b393fa1d7eea0fa,
         type: 3}
