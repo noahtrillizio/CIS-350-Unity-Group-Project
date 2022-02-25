@@ -10,12 +10,14 @@ using UnityEngine.UI;
 
 public class MachineMovement : MonoBehaviour
 {
-    private int lightsHit;
+
     private int phaseNum;
     private int correctPatterns;
 
     private bool activePattern;
-    
+    bool correctPattern;
+
+
 
     Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos, oldHatchPos, newHatchPos;
 
@@ -25,13 +27,16 @@ public class MachineMovement : MonoBehaviour
     public Timer timer;
     private ScoreManager scoreMan;
     private HammerSwing hammer;
+
+    private int[] lightCheck;
     public Queue<int> lightQueue;
     
 
 
     void Start()
     {
-
+        correctPattern = false;
+        lightQueue = new Queue<int> { };
         activePattern = false;
         hammer = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerSwing>();
         scoreMan = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
@@ -55,18 +60,9 @@ public class MachineMovement : MonoBehaviour
         //starts "phase 0" of machine where player goes through tutorial with fake moles
         if (phaseNum == 0 && scoreMan.score >= 2)
         {
-            hammer.canSwing = false;
-            startText.SetActive(true);
-
-            //when player hits space when prompted, game starts
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                timer.timerIsRunning = true;
-                hammer.canSwing = true;
-                startText.SetActive(false); ;
-                scoreMan.score = 0;
+            
                 phaseNum++;
-            }
+            
         }
 
         //"Phase 1" of machine where player plays simons says with machine lights
@@ -77,7 +73,6 @@ public class MachineMovement : MonoBehaviour
             {
                 activePattern = true;
                 StartCoroutine(patternCoroutine(lightPattern));
-                
             }
             
 
@@ -94,24 +89,20 @@ public class MachineMovement : MonoBehaviour
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
             currentLight.transform.position = newTopLightPos;
-            currentLight.GetComponent<HitMachine>().canHit = true;
         }
         else if(currentLight.CompareTag("botTriLight"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
             currentLight.transform.position = newBotLightPos;
-            currentLight.GetComponent<HitMachine>().canHit = true;
         }
         else if(currentLight.CompareTag("TriangleLights"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
             currentLight.transform.position = newHatchPos;
-            currentLight.GetComponent<HitMachine>().canHit = true;
         }
         else if(currentLight.CompareTag("CircleLights"))
         {
             currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(169, 0, 0, 0));
-            currentLight.GetComponent<HitMachine>().canHit = true;
         }
         
     }
@@ -122,26 +113,22 @@ public class MachineMovement : MonoBehaviour
     {
         if (currentLight.CompareTag("topTriLight"))
         {
-            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
             currentLight.transform.position = oldTopPos;
-            currentLight.GetComponent<HitMachine>().canHit = false;
         }
         else if (currentLight.CompareTag("botTriLight"))
         {
-            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
             currentLight.transform.position = oldBotPos;
-            currentLight.GetComponent<HitMachine>().canHit = false;
         }
         else if (currentLight.CompareTag("TriangleLights"))
         {
-            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
             currentLight.transform.position = oldHatchPos;
-            currentLight.GetComponent<HitMachine>().canHit = false;
         }
         else if(currentLight.CompareTag("CircleLights"))
         {
-            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(40, 0, 0, 0));
-            currentLight.GetComponent<HitMachine>().canHit = false;
+            currentLight.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color32(40, 0, 0, 0));
         }
     }
 
@@ -150,39 +137,50 @@ public class MachineMovement : MonoBehaviour
     //Parameter lightOrder, an int array with the index numbers of the lights based on pattern
     IEnumerator patternCoroutine(int[] lightOrder)
     {
-        //activates and deactivates lights in order based on parameter
-        lightsActivate(lights[lightOrder[0]]);
-        yield return new WaitForSeconds(2f);
-        lightsDeactivate(lights[lightOrder[0]]);
-
-        lightsActivate(lights[lightOrder[1]]);
-        yield return new WaitForSeconds(2f);
-        lightsDeactivate(lights[lightOrder[1]]);
-
-        lightsActivate(lights[lightOrder[2]]);
-        yield return new WaitForSeconds(2f);
-        lightsDeactivate(lights[lightOrder[2]]);
-
-        lightsActivate(lights[lightOrder[3]]);
-        yield return new WaitForSeconds(2f);
-        lightsDeactivate(lights[lightOrder[3]]);
-
-        lightsActivate(lights[lightOrder[4]]);
-        yield return new WaitForSeconds(2f);
-        lightsDeactivate(lights[lightOrder[4]]);
-
-        //enables all lights to be hit
-        for(int i=0; i<lightOrder.Length;i++)
+        do
         {
-            lights[i].GetComponent<HitMachine>().canHit = true;
+            for (int i = 0; i < lightOrder.Length; i++)
+            {
+                lights[i].GetComponent<HitMachine>().canHit = false;
+            }
+
+            //activates and deactivates lights in order based on parameter
+            for(int i =0; i < lightOrder.Length;i ++)
+            {
+                lightsActivate(lights[lightOrder[i]]);
+                yield return new WaitForSeconds(2f);
+                lightsDeactivate(lights[lightOrder[i]]);
+            }
+            
+            //enables all lights to be hit
+            for (int i = 0; i < lightOrder.Length; i++)
+            {
+                lights[i].GetComponent<HitMachine>().canHit = true;
+            }
+
+            yield return new WaitForSeconds(10f);
+
+            lightCheck = lightQueue.ToArray();
+
+            for (int i = 0; i < lightCheck.Length; i++)
+            {
+                if (lightCheck[i] == lightOrder[i])
+                {
+                    correctPattern = true;
+                }
+                else
+                {
+                    correctPattern = false;
+                }
+            }
+
         }
+        while (!correctPattern);
 
-        //waits until five lights are entered
-        yield return new WaitUntil(() => (lightQueue.Count >= 5));
+        activePattern = false;
 
-        //compares entered lights against set pattern
-        bool correctPattern = (lightOrder.Equals(lightQueue));
-        yield return new WaitUntil(() => (correctPattern));
+
+
     }
 
 }

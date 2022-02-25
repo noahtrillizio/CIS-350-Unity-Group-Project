@@ -48,7 +48,7 @@ public class HitMachine : MonoBehaviour
             //if machine spot is clicked, resets lights
             if (canHit && hit.collider.name != "Hatch")
             {
-                Debug.Log("hit");
+
                 canHit = false;
                 lightColor.SetColor("_EmissionColor", Color.black);
 
