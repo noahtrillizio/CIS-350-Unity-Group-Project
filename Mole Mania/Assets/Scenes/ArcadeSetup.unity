@@ -2558,7 +2558,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1828741945
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3619,6 +3619,8 @@ MonoBehaviour:
   BackgroundMusic: {fileID: 1425905396}
   Falling: {fileID: 2116356387}
   HitGround: {fileID: 2006066266}
+  scoreText: {fileID: 2106677902}
+  timeText: {fileID: 396887828}
 --- !u!82 &924013873463480351
 AudioSource:
   m_ObjectHideFlags: 0

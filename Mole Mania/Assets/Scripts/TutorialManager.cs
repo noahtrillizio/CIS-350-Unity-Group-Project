@@ -85,7 +85,7 @@ public class TutorialManager : MonoBehaviour
             {
                 posMovement++;
                 hammer.canSwing = true;
-                tutorialText.text = "Now take this legendary hammer of mole wacking, and wack this mole back into the darkness from which he came!";
+                tutorialText.text = "Now take this legendary hammer of mole wacking, and click on the mole to wack him back into the darkness from which he came!";
                 //textboxUpdater++;
                 mole = true;
             }

@@ -1845,13 +1845,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Mole Mania
+  m_Text: '
+
+    Mole Mania
 
 
-    Press Space to Continue
-
-
-    Requires mouse to whack'
+    Press Space to Continue'
 --- !u!222 &1471899854
 CanvasRenderer:
   m_ObjectHideFlags: 0
