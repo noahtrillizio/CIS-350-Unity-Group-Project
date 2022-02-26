@@ -1,5 +1,5 @@
 ﻿/*
- * Caleb Kahn
+ * Caleb Kahn (copied scrpt from Anna Breuker)
  * Project 2
  * Makes the mole move and detects collision
  */
@@ -24,10 +24,10 @@ public class TutorialMoleMove : MonoBehaviour
     {
         if (tm.mole)
         {
-            transform.Translate(Vector3.up * .8f);
+            transform.Translate(Vector3.up * .6f);
             tm.mole = false;
         }
-        /*if (!isUp)
+        if (!isUp)
         {
             transform.Translate(Vector3.up * speed * Time.deltaTime);
             isUp = true;
@@ -36,7 +36,7 @@ public class TutorialMoleMove : MonoBehaviour
         {
             transform.Translate(Vector3.down * speed * Time.deltaTime);
             isUp = false;
-        }*/
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +44,7 @@ public class TutorialMoleMove : MonoBehaviour
         if(tm.timer > .45f) {
             tm.timer = 0;
             tm.posMovement++;
-            transform.Translate(Vector3.down * .8f);
+            transform.Translate(Vector3.down * .6f);
         }
     }
 }

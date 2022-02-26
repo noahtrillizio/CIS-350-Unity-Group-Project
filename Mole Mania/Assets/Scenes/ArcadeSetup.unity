@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4481166, g: 0.49813205, b: 0.5755416, a: 1}
+  m_IndirectSpecularColor: {r: 0.44811714, g: 0.49813294, b: 0.5755426, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1296,8 +1296,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moles: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
   fakeMoles: {fileID: 9001911591384743816, guid: 9c31feb6cecbb4f4a85cf5cbbab211f9,
-    type: 3}
-  explosionMoles: {fileID: 8676029455756800168, guid: 540534b1aaa537342937bfb95199d240,
     type: 3}
   machineScript: {fileID: 534593006}
   spawnX:
