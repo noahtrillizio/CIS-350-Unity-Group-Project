@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44811714, g: 0.49813294, b: 0.5755426, a: 1}
+  m_IndirectSpecularColor: {r: 0.4481166, g: 0.498132, b: 0.5755416, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -640,6 +640,8 @@ MonoBehaviour:
   - {fileID: 644086463}
   - {fileID: 1000011497516464}
   - {fileID: 1000011065765387}
+  healthBar: {fileID: 0}
+  healthBarGameObject: {fileID: 0}
   timer: {fileID: 705350056}
   machineBroke: {fileID: 2100000, guid: c1f43dd8b97605847a7b2f322c934ef7, type: 2}
   machineDead: {fileID: 2100000, guid: feaae20078061a047a69084691029f89, type: 2}
@@ -1369,7 +1371,6 @@ MonoBehaviour:
   moles: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
   fakeMoles: {fileID: 9001911591384743816, guid: 9c31feb6cecbb4f4a85cf5cbbab211f9,
     type: 3}
-  explosionMoles: {fileID: 0}
   machineScript: {fileID: 534593006}
   spawnX:
   - 1
@@ -1721,7 +1722,7 @@ GameObject:
   - component: {fileID: 1103103744}
   m_Layer: 5
   m_Name: Slider
-  m_TagString: Untagged
+  m_TagString: Slider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1745,8 +1746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.8, y: 97.3}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: -20, y: 149}
+  m_SizeDelta: {x: 214.4563, y: 56.95543}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103103744
 MonoBehaviour:
@@ -1939,7 +1940,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0.6, y: 0.1}
+  m_AnchoredPosition: {x: 0.6000061, y: 0.099998474}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1425905394
@@ -3038,7 +3039,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

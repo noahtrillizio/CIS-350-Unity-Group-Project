@@ -1,5 +1,5 @@
 ﻿/*
- * Jacob Zydorowicz
+ * Jacob Zydorowicz, Anna Breuker
  * Project 2 Mole Mania
  * Moves crit spots on machine based on running timer
  */
@@ -16,12 +16,12 @@ public class MachineMovement : MonoBehaviour
     private bool activePattern;
     bool correctPattern;
 
-
-
     public Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos, oldHatchPos, newHatchPos;
 
     public GameObject[] lights;
-   
+
+    public Slider healthBar;
+    public GameObject healthBarGameObject;
 
     public Timer timer;
     private ScoreManager scoreMan;
@@ -38,9 +38,13 @@ public class MachineMovement : MonoBehaviour
         correctPattern = false;
         lightQueue = new Queue<int> { };
         activePattern = false;
+        healthBarGameObject = GameObject.FindGameObjectWithTag("Slider");
+        healthBar = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
         scoreMan = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         phaseNum = 0;
         correctPats = 0;
+
+        healthBarGameObject.SetActive(false);  //making the health bar invisible until you start hitting the machine.
 
         //gets current and future positons of moving lights
         newTopLightPos = new Vector3(lights[4].gameObject.transform.position.x, lights[4].gameObject.transform.position.y, lights[4].gameObject.transform.position.z) + new Vector3(0f, 3f, 0f);
@@ -73,22 +77,28 @@ public class MachineMovement : MonoBehaviour
                 activePattern = true;
                 StartCoroutine(patternCoroutine(lightPattern));
             }
-
+            if (correctPats == 1)
+            {
+                healthBarGameObject.SetActive(true);
+            }
             if(correctPats == 2)
             {
                
                 gameObject.GetComponent<Renderer>().material = machineBroke;
+                healthBar.value = 66;
             }
 
             if (correctPats == 3)
             {
              
                 gameObject.GetComponent<Renderer>().material = machineDead;
+                healthBar.value = 33;
             }
 
             if(correctPats == 4 )
             {
                 timer.gameOver = true;
+                healthBar.value = 0;
             }
         }
      
