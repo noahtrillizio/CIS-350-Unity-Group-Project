@@ -57,9 +57,10 @@ public class HammerHitMole : MonoBehaviour
             scoreText.gameObject.SetActive(true);
             timeText.gameObject.SetActive(true);
         }
-        if (CurrentSounds == 2 && Input.GetKeyDown(KeyCode.Space))
+        if (CurrentSounds == 2)
         {
             BackgroundMusic.Play();
+            CurrentSounds++;
         }
         if (CurrentSounds == 3)
         {
