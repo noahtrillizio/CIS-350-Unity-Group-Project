@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker, Jacob Zydorowicz
+ * Anna Breuker, Jacob Zydorowicz, Ian Connors
  * Project 2
  * This scripts manages the moles that spawn and where they spawn.
  */
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject moles;
-    private Timer time;
+    public GameObject[] moles;
+    public int[] scoreToChangeMoles;
 
+    private Timer time;
+    private ScoreManager scoreManager;
+
+    public float spawnDelayMin = 1.5f;
+    public float spawnDelayMax = 3.0f;
 
     //where the mole positions are stored
     public float[] spawnX;
@@ -25,6 +30,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         StartCoroutine(SpawnRandomPrefabWithCoroutine());
     }
 
@@ -45,7 +51,7 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnMole();
 
-            float randomDelay = Random.Range(1.5f, 3.0f);
+            float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);
         }
@@ -62,11 +68,19 @@ public class SpawnManager : MonoBehaviour
         //spawn mole
         if (!moleHere[locationIndex])
         {
-          
-            
-            Instantiate(moles, spawnPos, moles.transform.rotation);
-           
-            
+            //choses which mole to spawn based on current score
+            if (scoreManager.score < scoreToChangeMoles[0])
+                Instantiate(moles[0], spawnPos, moles[0].transform.rotation);
+
+            else if (scoreManager.score < scoreToChangeMoles[1] && scoreManager.score > scoreToChangeMoles[0] - 1)
+                Instantiate(moles[1], spawnPos, moles[1].transform.rotation);
+
+            else if (scoreManager.score < scoreToChangeMoles[2] && scoreManager.score > scoreToChangeMoles[1] - 1)
+                Instantiate(moles[2], spawnPos, moles[2].transform.rotation);
+
+            else if (scoreManager.score > scoreToChangeMoles[2] - 1)
+                Instantiate(moles[3], spawnPos, moles[3].transform.rotation);
+
             moleHere[locationIndex] = true;
         }
     }

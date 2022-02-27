@@ -1,5 +1,5 @@
 ﻿/*
- * Jacob Zydorowicz, Anna Breuker
+ * Jacob Zydorowicz, Anna Breuker, Ian Connors
  * Project 2 Mole Mania
  * Moves crit spots on machine based on running timer
  */
@@ -28,7 +28,8 @@ public class MachineMovement : MonoBehaviour
 
     public Queue<int> lightQueue;
 
-    public Material machineBroke, machineDead;
+    public Material[] machineMat;
+    private bool matChange = false;
 
     public AudioSource MachineSFX;
     public AudioClip machineHitSound;
@@ -82,30 +83,59 @@ public class MachineMovement : MonoBehaviour
             {
                 healthBar.value = 100;
             }
+
             else if (correctPats == 1)
             {
-                healthBar.value = 84;
+                if (!matChange)
+                    StartCoroutine(machineBreakFlashiness(machineMat[1], machineMat[0], 5));
+                healthBar.value = 89;
             }
             else if(correctPats == 2)
             {
-                healthBar.value = 66;
+                matChange = false;
+                healthBar.value = 78;
             }
+
             else if (correctPats == 3)
             {
-                gameObject.GetComponent<Renderer>().material = machineBroke;
-                healthBar.value = 50;
+                if (!matChange)
+                    StartCoroutine(machineBreakFlashiness(machineMat[0], machineMat[2], 25));
+                healthBar.value = 65;
             }
             else if (correctPats == 4)
             {
-                healthBar.value = 32;
+                matChange = false;
+                healthBar.value = 54;
             }
+
             else if (correctPats == 5)
             {
-                gameObject.GetComponent<Renderer>().material = machineDead;
-                healthBar.value = 16;
+                if (!matChange)
+                    StartCoroutine(machineBreakFlashiness(machineMat[2], machineMat[1], 15));
+                healthBar.value = 43;
             }
-            else if(correctPats == 6)
+            else if (correctPats == 6)
             {
+                matChange = false;
+                healthBar.value = 32;
+            }
+
+            else if (correctPats == 7)
+            {
+                if (!matChange)
+                    StartCoroutine(machineBreakFlashiness(machineMat[2], machineMat[3], 10));
+                healthBar.value = 21;
+            }
+            else if (correctPats == 8)
+            {
+                matChange = false;
+                healthBar.value = 10;
+            }
+
+            else if(correctPats == 9)
+            {
+                if (!matChange)
+                    StartCoroutine(machineBreakFlashiness(machineMat[3], machineMat[4], 30));
                 timer.gameOver = true;
                 healthBar.value = 0;
                 StopAllCoroutines();
@@ -119,6 +149,19 @@ public class MachineMovement : MonoBehaviour
             }
         }
      
+    }
+
+    IEnumerator machineBreakFlashiness(Material oldMat, Material newMat, int flashes)
+	{
+        matChange = true;
+        for (int i = 0; i < flashes; i++)
+		{
+            gameObject.GetComponent<Renderer>().material = newMat;
+            yield return new WaitForSeconds(0.05f);
+            gameObject.GetComponent<Renderer>().material = oldMat;
+            yield return new WaitForSeconds(0.05f);
+		}
+        gameObject.GetComponent<Renderer>().material = newMat;
     }
 
     //decides how to activate lights based on passed in light

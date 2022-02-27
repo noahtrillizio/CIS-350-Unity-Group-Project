@@ -644,8 +644,12 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarGameObject: {fileID: 0}
   timer: {fileID: 705350056}
-  machineBroke: {fileID: 2100000, guid: c1f43dd8b97605847a7b2f322c934ef7, type: 2}
-  machineDead: {fileID: 2100000, guid: feaae20078061a047a69084691029f89, type: 2}
+  machineMat:
+  - {fileID: 2100000, guid: 779002d9375a3354cbd3b50db6a72063, type: 2}
+  - {fileID: 2100000, guid: c1f43dd8b97605847a7b2f322c934ef7, type: 2}
+  - {fileID: 2100000, guid: 596d614a7509c5e47a7e0202ad44af33, type: 2}
+  - {fileID: 2100000, guid: feaae20078061a047a69084691029f89, type: 2}
+  - {fileID: 2100000, guid: 9276fabded526174fa733d2d5a0a9fa5, type: 2}
   MachineSFX: {fileID: 534593008}
   machineHitSound: {fileID: 8300000, guid: f64054e2f5a366b43bc4e422ca898d01, type: 3}
 --- !u!114 &534593007
@@ -1182,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9dd42e7a24165344180a3f3e15ccc99b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.8
+      value: 15.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9dd42e7a24165344180a3f3e15ccc99b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1371,7 +1375,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0217cb11ead9481428bbfc5219ce4301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moles: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+  moles:
+  - {fileID: 9001911591384743816, guid: 9c31feb6cecbb4f4a85cf5cbbab211f9, type: 3}
+  - {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+  - {fileID: 9059085704147902902, guid: 22637b04d4edc644d948798ecdd89d2b, type: 3}
+  - {fileID: 862166095033528265, guid: 6796d29b4d150254c9643be387b41cbb, type: 3}
+  scoreToChangeMoles: 050000000f0000001e0000002d000000
+  spawnDelayMin: 1.5
+  spawnDelayMax: 3
   spawnX:
   - 1
   - -7.5
@@ -1391,7 +1402,7 @@ MonoBehaviour:
   - 8
   - 8
   moleHere: 0000000000000000
-  spawnPosY: 16
+  spawnPosY: 15.5
   locationIndex: 0
 --- !u!4 &958895058
 Transform:
@@ -1420,7 +1431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.991636
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1428,7 +1439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51.93937
+      value: 43.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2602,7 +2613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.991636
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2610,7 +2621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 80.93936
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fc78d28f5603c241ae27d2d12370bee, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2709,7 +2720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988482551}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -50.591637, y: 13.734859, z: -22.360638}
+  m_LocalPosition: {x: -39.41, y: 13.734859, z: -22.360638}
   m_LocalScale: {x: 100.00012, y: 0.5000005, z: 300}
   m_Children: []
   m_Father: {fileID: 592681675}
@@ -3877,7 +3888,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0f0f112c83ffe4d439155e63f7fb2173, type: 2}
+  - {fileID: 2100000, guid: d95536c2ddafa2242943356329875e55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
