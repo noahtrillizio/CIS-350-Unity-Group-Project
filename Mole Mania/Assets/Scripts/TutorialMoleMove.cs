@@ -10,6 +10,8 @@ using UnityEngine;
 //attach to moles.
 public class TutorialMoleMove : MonoBehaviour
 {
+    public GameObject SpecialEffect;
+    public AudioSource TutorialMolesHit;
     public float speed;
     public bool isUp;
     private TutorialManager tm;
@@ -45,6 +47,8 @@ public class TutorialMoleMove : MonoBehaviour
             tm.timer = 0;
             tm.posMovement++;
             transform.Translate(Vector3.down * .6f);
+            //GameObject clone = (GameObject)Instantiate(SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
+            TutorialMolesHit.Play();
         }
     }
 }

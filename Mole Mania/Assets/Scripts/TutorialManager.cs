@@ -1,5 +1,5 @@
 ﻿/*
- * Caleb Kahn
+ * Caleb Kahn, Noah Trillizio
  * Project 2
  * Manages tutorial camera movement and phases of tutorial
  */

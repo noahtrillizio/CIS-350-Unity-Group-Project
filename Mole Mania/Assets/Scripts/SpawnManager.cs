@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker, Jacob Zydorowicz
+ * Anna Breuker, Jacob Zydorowicz, Noah Trillizio
  * Project 2
  * This scripts manages the moles that spawn and where they spawn.
  */
@@ -21,15 +21,29 @@ public class SpawnManager : MonoBehaviour
     public float spawnPosY = 17;
     public int locationIndex;
 
+    private HammerHitMole startSpawn;
+
+    private bool started = false;
+
     // Start is called before the first frame update
     void Start()
     {
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
-        StartCoroutine(SpawnRandomPrefabWithCoroutine());
+        //StartCoroutine(SpawnRandomPrefabWithCoroutine());
     }
 
     private void Update()
     {
+        if (started == true)
+        {
+
+        }
+        else if (startSpawn.CurrentSounds == 9 && started == false)
+        {
+            StartCoroutine(SpawnRandomPrefabWithCoroutine());
+            started = true;
+        }
+
         if(time.gameOver)
         {
             StopAllCoroutines();
@@ -39,7 +53,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator SpawnRandomPrefabWithCoroutine()
     {
         //add a 3 second delay before first spawning moles
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         while (true)
         {
