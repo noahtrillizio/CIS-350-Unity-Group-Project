@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker, Jacob Zydorowicz, Ian Connors
+ * Anna Breuker, Jacob Zydorowicz, Trillizio
  * Project 2
  * This scripts manages the moles that spawn and where they spawn.
  */
@@ -35,7 +35,8 @@ public class SpawnManager : MonoBehaviour
     {
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        StartCoroutine(SpawnRandomPrefabWithCoroutine());
+        startSpawn = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerHitMole>();
+        //StartCoroutine(SpawnRandomPrefabWithCoroutine());
     }
 
     private void Update()
