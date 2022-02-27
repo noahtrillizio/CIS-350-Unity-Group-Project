@@ -20,22 +20,38 @@ public class EndlessSpawn : MonoBehaviour
     public float spawnPosY = 17;
     public int locationIndex;
 
-    public HammerHitMole startSpawn;
-
-    private bool started = false;
-
     // Start is called before the first frame update
     void Start()
     {
+        //goodEnd = true;//Temp
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         StartCoroutine(SpawnRandomPrefabWithCoroutine());
     }
 
+    void Update()
+    {
+        if (scoreManager.score >= 30)
+        {
+            spawnDelayMin = 1f;
+            spawnDelayMax = 1.5f;
+        }
+        else if (scoreManager.score >= 20)
+        {
+            spawnDelayMin = 1f;
+            spawnDelayMax = 2f;
+        }
+        else if (scoreManager.score >= 10)
+        {
+            spawnDelayMin = 1f;
+            spawnDelayMax = 2.5f;
+        }
+    }
+
     IEnumerator SpawnRandomPrefabWithCoroutine()
     {
         //add a 3 second delay before first spawning moles
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         while (true)
         {
@@ -74,5 +90,4 @@ public class EndlessSpawn : MonoBehaviour
             moleHere[locationIndex] = true;
         }
     }
-
 }

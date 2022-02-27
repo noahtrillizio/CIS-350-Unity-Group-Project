@@ -42,7 +42,7 @@ public class TutorialManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-                SceneManager.LoadScene("Endless Mode");
+                SceneManager.LoadScene("EndlessMode");
             }
         }
         else if (posMovement == 1) {

@@ -307,7 +307,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 20aa6debf0010294c87623e7a7d89208, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6719972bf2d1ed84da9f929e79b9dbf2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2517,7 +2517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d299fa8c336f8bd4f849633f799f2726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpecialEffect: {fileID: 100006, guid: a489745b26b04fd42aa49e3b762b9ba0, type: 3}
+  SpecialEffect: {fileID: 100002, guid: 8ab6c72f39c05e2488825eb424cb36d4, type: 3}
   TutorialMolesHit: {fileID: 63643369}
   speed: 0
   isUp: 0
