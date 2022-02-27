@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArcadeSetup.unity
     guid: fcd8a3590eb6f584f9a99c82c39be8f5
+  - enabled: 1
+    path: Assets/Scenes/EndlessMode.unity
+    guid: 778322102b62e1f45848b6ff120c5c07
   m_configObjects: {}

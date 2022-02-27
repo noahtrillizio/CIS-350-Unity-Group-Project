@@ -665,7 +665,6 @@ GameObject:
   - component: {fileID: 232898305}
   - component: {fileID: 232898304}
   - component: {fileID: 232898303}
-  - component: {fileID: 232898302}
   m_Layer: 0
   m_Name: Hatch Light
   m_TagString: TriangleLights
@@ -687,26 +686,6 @@ Transform:
   m_Father: {fileID: 33681580}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 107.987, y: -90, z: 89.892}
---- !u!114 &232898302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232898300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHit: 0
-  X_Value: 0
-  Y_Value: 0
-  Z_Value: 0
-  SpecialEffect: {fileID: 100012, guid: 517d26ab6aa4e1d4082a18f6d6d73814, type: 3}
-  lightColor: {fileID: 0}
-  MachineSFX: {fileID: 624378504}
-  machineHitSound: {fileID: 8300000, guid: c8e41d9b817c63d4d824a278e751b2a0, type: 3}
 --- !u!64 &232898303
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1468,7 +1447,6 @@ GameObject:
   - component: {fileID: 538772568}
   - component: {fileID: 538772567}
   - component: {fileID: 538772566}
-  - component: {fileID: 538772565}
   m_Layer: 0
   m_Name: LRLight
   m_TagString: CircleLights
@@ -1491,26 +1469,6 @@ Transform:
   m_Father: {fileID: 33681580}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -218.709, z: -179.99998}
---- !u!114 &538772565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538772563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHit: 0
-  X_Value: 0
-  Y_Value: 0
-  Z_Value: 0
-  SpecialEffect: {fileID: 100012, guid: 517d26ab6aa4e1d4082a18f6d6d73814, type: 3}
-  lightColor: {fileID: 0}
-  MachineSFX: {fileID: 624378504}
-  machineHitSound: {fileID: 8300000, guid: c8e41d9b817c63d4d824a278e751b2a0, type: 3}
 --- !u!64 &538772566
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2562,7 +2520,6 @@ GameObject:
   - component: {fileID: 1065807706}
   - component: {fileID: 1065807705}
   - component: {fileID: 1065807704}
-  - component: {fileID: 1065807703}
   m_Layer: 0
   m_Name: topTriLights
   m_TagString: topTriLight
@@ -2584,26 +2541,6 @@ Transform:
   m_Father: {fileID: 33681580}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 28.442001, z: 0}
---- !u!114 &1065807703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065807701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHit: 0
-  X_Value: 0
-  Y_Value: 0
-  Z_Value: 0
-  SpecialEffect: {fileID: 100012, guid: 517d26ab6aa4e1d4082a18f6d6d73814, type: 3}
-  lightColor: {fileID: 0}
-  MachineSFX: {fileID: 624378504}
-  machineHitSound: {fileID: 8300000, guid: c8e41d9b817c63d4d824a278e751b2a0, type: 3}
 --- !u!64 &1065807704
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3175,9 +3112,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 879f0c8f1b519a347b874e7c68ddf1d8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 23cee7e70bde3504ba8b85bbb888bb27, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3906,7 +3843,6 @@ GameObject:
   - component: {fileID: 1966924316}
   - component: {fileID: 1966924315}
   - component: {fileID: 1966924314}
-  - component: {fileID: 1966924313}
   m_Layer: 0
   m_Name: ULLight
   m_TagString: CircleLights
@@ -3929,26 +3865,6 @@ Transform:
   m_Father: {fileID: 33681580}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -252.12799, z: -179.99998}
---- !u!114 &1966924313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966924311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHit: 0
-  X_Value: 0
-  Y_Value: 0
-  Z_Value: 0
-  SpecialEffect: {fileID: 100012, guid: 517d26ab6aa4e1d4082a18f6d6d73814, type: 3}
-  lightColor: {fileID: 0}
-  MachineSFX: {fileID: 624378504}
-  machineHitSound: {fileID: 8300000, guid: c8e41d9b817c63d4d824a278e751b2a0, type: 3}
 --- !u!64 &1966924314
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4161,7 +4077,6 @@ GameObject:
   - component: {fileID: 2145954389}
   - component: {fileID: 2145954388}
   - component: {fileID: 2145954387}
-  - component: {fileID: 2145954386}
   m_Layer: 0
   m_Name: bottomTriLights
   m_TagString: botTriLight
@@ -4183,26 +4098,6 @@ Transform:
   m_Father: {fileID: 33681580}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90.00001}
---- !u!114 &2145954386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145954384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b424cf5d1fe6e0b409f85f3023476ea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHit: 0
-  X_Value: 0
-  Y_Value: 0
-  Z_Value: 0
-  SpecialEffect: {fileID: 100012, guid: 517d26ab6aa4e1d4082a18f6d6d73814, type: 3}
-  lightColor: {fileID: 0}
-  MachineSFX: {fileID: 624378504}
-  machineHitSound: {fileID: 8300000, guid: c8e41d9b817c63d4d824a278e751b2a0, type: 3}
 --- !u!64 &2145954387
 MeshCollider:
   m_ObjectHideFlags: 0
