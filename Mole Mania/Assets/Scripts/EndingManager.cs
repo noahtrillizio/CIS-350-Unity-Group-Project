@@ -18,6 +18,9 @@ public class EndingManager : MonoBehaviour
 
     private bool started;
 
+    public Camera mainCam;
+    public Camera badEndCam;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,6 @@ public class EndingManager : MonoBehaviour
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         machineScript = GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>();
-
         endingText.text = "";
     }
 
@@ -36,8 +38,10 @@ public class EndingManager : MonoBehaviour
         if (scoreManagerScript.score >= 50 || timer.gameOver)//score gets above a certain amount or time runs out.
         {
             timer.gameOver = true;
-            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-30, -40, 0); //this is buggy.
-            GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler(20, -90, 0); //this is also buggy.
+            mainCam.enabled = false;
+            badEndCam.enabled = true;
+            //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-30, -40, 0); //this is buggy.
+            //GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler(20, -90, 0); //this is also buggy.
             if (started == true)
             {
 
