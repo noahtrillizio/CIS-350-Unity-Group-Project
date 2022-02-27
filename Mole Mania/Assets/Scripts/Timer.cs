@@ -27,7 +27,6 @@ public class Timer : MonoBehaviour
         maxTime = Mathf.FloorToInt(timeRemaining);
         display();
         timerIsRunning = false;
-
         gameOver = false;
         
     }
@@ -36,7 +35,7 @@ public class Timer : MonoBehaviour
     //creates a minutes and seconds timer for game
     void FixedUpdate()
     {
-        if(timerIsRunning)
+        if(timerIsRunning && !gameOver)
         {
             
             if (timeRemaining > 0)

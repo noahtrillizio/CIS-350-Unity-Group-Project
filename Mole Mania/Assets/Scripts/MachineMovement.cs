@@ -15,36 +15,41 @@ public class MachineMovement : MonoBehaviour
 
     private bool activePattern;
     bool correctPattern;
+    public bool firstLight;
+    private bool activeHealth;
 
     public Vector3 newTopLightPos, oldTopPos, newBotLightPos, oldBotPos, oldHatchPos, newHatchPos;
 
     public GameObject[] lights;
-
     public Slider healthBar;
     public GameObject healthBarGameObject;
 
     public Timer timer;
-    private ScoreManager scoreMan;
 
     public Queue<int> lightQueue;
 
     public Material machineBroke, machineDead;
 
-
+    public AudioSource MachineSFX;
+    public AudioClip machineHitSound;
 
     void Start()
     {
-        correctPats = 0;
+        activeHealth = false;
+        firstLight = false;
         correctPattern = false;
-        lightQueue = new Queue<int> { };
         activePattern = false;
-        healthBarGameObject = GameObject.FindGameObjectWithTag("Slider");
-        healthBar = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
-        scoreMan = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+
         phaseNum = 0;
         correctPats = 0;
+        correctPats = 0;
 
-        healthBarGameObject.SetActive(false);  //making the health bar invisible until you start hitting the machine.
+        lightQueue = new Queue<int> { };
+
+        healthBarGameObject = GameObject.FindGameObjectWithTag("Slider");
+        healthBar = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
+        
+        healthBarGameObject.SetActive(false);
 
         //gets current and future positons of moving lights
         newTopLightPos = new Vector3(lights[4].gameObject.transform.position.x, lights[4].gameObject.transform.position.y, lights[4].gameObject.transform.position.z) + new Vector3(0f, 3f, 0f);
@@ -55,57 +60,69 @@ public class MachineMovement : MonoBehaviour
 
         oldHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z);
         newHatchPos = new Vector3(GameObject.FindGameObjectWithTag("Hatch").transform.position.x, GameObject.FindGameObjectWithTag("Hatch").transform.position.y, GameObject.FindGameObjectWithTag("Hatch").transform.position.z) + new Vector3(0f, -3f, 0f);
-
     }
 
    
     void Update()
     {
-        //starts "phase 0" of machine where player goes through tutorial with fake moles
-        if (phaseNum == 0 && scoreMan.score == 0)
-        {
-                phaseNum++;   
-        }
-
         //"Phase 1" of machine where player plays simons says with machine lights
-        if (phaseNum == 1 && !timer.gameOver)
+        if (!timer.gameOver)
         {
-            int[] lightPattern = {1,4,2,0,3};
-           
-            if(!activePattern)
+          
+
+            //activates healthbar when first light is hit
+            if(!activeHealth && firstLight)
             {
-                activePattern = true;
-                StartCoroutine(patternCoroutine(lightPattern));
-            }
-            if (correctPats == 1)
-            {
+                activeHealth = true;
                 healthBarGameObject.SetActive(true);
             }
-            if(correctPats == 2)
+
+            //sets healthbar and texture based on how many times the player gets a correct hammer pattern
+            if(correctPats ==0)
             {
-               
-                gameObject.GetComponent<Renderer>().material = machineBroke;
+                healthBar.value = 100;
+            }
+            else if (correctPats == 1)
+            {
+                healthBar.value = 84;
+            }
+            else if(correctPats == 2)
+            {
                 healthBar.value = 66;
             }
-
-            if (correctPats == 3)
+            else if (correctPats == 3)
             {
-             
-                gameObject.GetComponent<Renderer>().material = machineDead;
-                healthBar.value = 33;
+                gameObject.GetComponent<Renderer>().material = machineBroke;
+                healthBar.value = 50;
             }
-
-            if(correctPats == 4 )
+            else if (correctPats == 4)
+            {
+                healthBar.value = 32;
+            }
+            else if (correctPats == 5)
+            {
+                gameObject.GetComponent<Renderer>().material = machineDead;
+                healthBar.value = 16;
+            }
+            else if(correctPats == 6)
             {
                 timer.gameOver = true;
                 healthBar.value = 0;
+                StopAllCoroutines();
+            }
+
+            //starts light pattern when one is not actively showing
+            if (!activePattern && !timer.gameOver)
+            {
+                activePattern = true;
+                StartCoroutine(patternCoroutine(randomPattern()));
             }
         }
      
     }
 
     //decides how to activate lights based on passed in light
-    //parameter: currentlight - light from lights array being activated
+    //parameter: currentlight - light being activated from an array of lights
     public void lightsActivate(GameObject currentLight)
     {
         if(currentLight.CompareTag("topTriLight"))
@@ -132,7 +149,7 @@ public class MachineMovement : MonoBehaviour
     }
 
     //decides how to deactivate lights based on passed in light
-    //parameter: currentlight - light from lights array being deactivated
+    //parameter: currentlight - light being deactivated from an array of lights
     public void lightsDeactivate(GameObject currentLight)
     {
         if (currentLight.CompareTag("topTriLight"))
@@ -154,12 +171,22 @@ public class MachineMovement : MonoBehaviour
         }
     }
 
+    //displays light pattern and determines if player input it correctly
+    //parameter: lightOrder - array of machine light indexes that represent the order of the pattern
     IEnumerator patternCoroutine(int[] lightOrder)
     {
+        float waitTime = Random.Range(.5f, 1f);
+        int timeInBetween = Random.Range(4, 5);
+
         do
         {
-            yield return new WaitForSeconds(5f);
+            foreach(int light in lightOrder)
+            {
+                print(light);
+            }
+            yield return new WaitForSeconds(timeInBetween);
 
+            //disables all lights be default
             for (int i = 0; i < lightOrder.Length; i++)
             {
                 lights[i].GetComponent<HitMachine>().canHit = false;
@@ -170,7 +197,7 @@ public class MachineMovement : MonoBehaviour
             for(int i =0; i < lightOrder.Length;i ++)
             {
                 lightsActivate(lights[lightOrder[i]]);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(waitTime);
                 lightsDeactivate(lights[lightOrder[i]]);
             }
             
@@ -180,46 +207,67 @@ public class MachineMovement : MonoBehaviour
                 lights[i].GetComponent<HitMachine>().canHit = true;
             }
 
-            yield return new WaitForSeconds(10f);
 
+            yield return new WaitForSeconds(5f);
+
+            //checks if player correctly inputs light order
             int []lightCheck = lightQueue.ToArray();
 
-            foreach(int lightInd in lightCheck)
+            if(lightCheck.Length==5)
             {
-                Debug.Log(lightInd);
+                for (int i = 0; i < lightCheck.Length; i++)
+                {
+                    if (!lightCheck[i].Equals(lightOrder[i]))
+                    {
+                        correctPattern = false;
+                        break;
+                    }
+                    else
+                    {
+                        correctPattern = true;
+                    }
+                }
+            }
+            else
+            {
+                correctPattern = false;
             }
 
-            for (int i = 0; i < lightCheck.Length; i++)
-            {
-                if (!lightCheck[i].Equals(lightOrder[i]))
-                {
-                    correctPattern = false;
-                    break;
-                }
-                else
-                {
-                    correctPattern = true;
-                }
-               
-            }
-            
-            Debug.Log(correctPattern);
             lightQueue.Clear();
+
+            for (int i = 0; i < lightOrder.Length; i++)
+            {
+                lightsDeactivate(lights[lightOrder[i]]);
+            }
         }
         while (!correctPattern);
-
+        MachineSFX.PlayOneShot(machineHitSound, 1.0f);
         correctPats++;
-        Debug.Log(correctPats);
         activePattern = false;
-
-        
-        
-
-
     }
 
+    //generates a array with random non repeating values from 0-4
+    private int[] randomPattern()
+    {
+
+        List<int> nums = new List<int> { 0, 1, 2, 3, 4 };
+        List<int> listPat = new List<int> { };
+
+        while(listPat.Count<5)
+        {
+            int next = Random.Range(0, 5);
+
+            if(nums.Contains(next))
+            {
+                nums.Remove(next);
+                listPat.Add(next);
+            }
+        }
+
+        int[] pattern = listPat.ToArray();
+
+        return pattern;
+        
+    }
 }
-/*Notes:
- * Make the light bars require multiple hits to go away so one hit doesn't give it away
- * 
- */
+
