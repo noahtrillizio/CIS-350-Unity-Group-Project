@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 1938809145936890091}
   m_Layer: 0
   m_Name: moleHurt
-  m_TagString: Untagged
+  m_TagString: Mole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -78,7 +78,7 @@ public class HammerHitMole : MonoBehaviour
         }
         else if (CurrentSounds == 4 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "This may look like an ordinary wack-a-mole machine in a back room but I asure you its anything but.";
+            narratorText.text = "This may look like an ordinary wack-a-mole machine in a back room, but I asure you its anything but.";
             CurrentSounds++;
         }
         else if (CurrentSounds == 5 && Input.GetKeyDown(KeyCode.Space))
@@ -88,12 +88,12 @@ public class HammerHitMole : MonoBehaviour
         }
         else if (CurrentSounds == 6 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "If you feel the challange is to insermountable you may leave at any point.";
+            narratorText.text = "If you feel the challange is too insermountable you may leave at any point.";
             CurrentSounds++;
         }
         else if (CurrentSounds == 7 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "However, I see a fire eyes that says you will see this threw to the end!";
+            narratorText.text = "However, I see a fire in your eyes that says you will see this through to the end!";
             CurrentSounds++;
         }
         else if (CurrentSounds == 8 && Input.GetKeyDown(KeyCode.Space))
