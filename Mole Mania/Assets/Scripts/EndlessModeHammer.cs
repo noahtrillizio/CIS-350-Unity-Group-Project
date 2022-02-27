@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class EndlessModeHammer : MonoBehaviour
 {
-    public GameObject SpecialEffect;
     private ScoreManager scoreManagerScript;
-    private SpawnManager spawnManagerScript;
+    private EndlessSpawn spawnManagerScript;
     private Timer gameTime;
 
     public AudioSource MoleRelatedSFX;
@@ -20,26 +19,26 @@ public class EndlessModeHammer : MonoBehaviour
     private float soundChanger;
     public float CurrentSounds;
 
+    public Text narratorText;
+
+    public GameObject panel;
+
     void Start()
     {
         gameTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<EndlessSpawn>();
+        gameTime.timerIsRunning = true;
         scoreText.gameObject.SetActive(true);
         timeText.gameObject.SetActive(true);
+        panel.gameObject.SetActive(false);
+        narratorText.gameObject.SetActive(false);
         CurrentSounds = 0;
     }
 
     void Update()
     {
-        if (CurrentSounds == 0)
-        {
-            soundChanger = (scoreManagerScript.score) * .01f;
-            if (scoreManagerScript.score >= 3)
-            {
-                BackgroundMusic.pitch = (1f - soundChanger) + .03f;
-            }
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
