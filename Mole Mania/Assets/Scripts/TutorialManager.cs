@@ -40,6 +40,10 @@ public class TutorialManager : MonoBehaviour
                 posMovement++;
                 BackgroundMusic.Play();
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                SceneManager.LoadScene("Endless Mode");
+            }
         }
         else if (posMovement == 1) {
             cam.transform.Rotate(Vector3.left, Time.deltaTime * 10 / 3);

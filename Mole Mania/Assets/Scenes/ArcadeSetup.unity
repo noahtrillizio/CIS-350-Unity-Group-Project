@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4481188, g: 0.49813253, b: 0.5755422, a: 1}
+  m_IndirectSpecularColor: {r: 0.44811964, g: 0.4981333, b: 0.57554305, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9276fabded526174fa733d2d5a0a9fa5, type: 2}
   MachineSFX: {fileID: 534593008}
   machineHitSound: {fileID: 8300000, guid: f64054e2f5a366b43bc4e422ca898d01, type: 3}
+  failedPatternSound: {fileID: 0}
 --- !u!114 &534593007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,7 +1080,7 @@ MonoBehaviour:
   SpecialEffect: {fileID: 0}
   lightColor: {fileID: 0}
   MachineSFX: {fileID: 534593008}
-  machineHitSound: {fileID: 8300000, guid: 2c941f84b0e20a8489e4e6ef0baa3741, type: 3}
+  machineHitSound: {fileID: 8300000, guid: c8e41d9b817c63d4d824a278e751b2a0, type: 3}
 --- !u!82 &534593008
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2846,7 +2847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0.50980395}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
