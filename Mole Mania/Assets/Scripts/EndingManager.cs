@@ -14,6 +14,7 @@ public class EndingManager : MonoBehaviour
     private ScoreManager scoreManagerScript;
     private SpawnManager spawnManagerScript;
     private MachineMovement machineScript;
+    public HammerHitMole hammerHitMoleScript;
     public Text endingText;
 
     private bool started;
@@ -66,6 +67,7 @@ public class EndingManager : MonoBehaviour
         else if (started == false)
         {
             StartCoroutine(ChangeBadEndText());
+            hammerHitMoleScript.setUIActive(false);
             started = true;
         }
 

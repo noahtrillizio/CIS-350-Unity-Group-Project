@@ -1,5 +1,5 @@
 ﻿/*
- * Noah Trillizio & Anna Breuker
+ * Noah Trillizio, Anna Breuker, Ian Connors
  * Project 2 Mole Mania
  * Makes blood splatter when hammer hits the mole
  */
@@ -38,10 +38,7 @@ public class HammerHitMole : MonoBehaviour
         gameTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
-        scoreText.gameObject.SetActive(false);
-        timeText.gameObject.SetActive(false);
-        narratorText.enabled = false;
-        panel.gameObject.SetActive(false);
+        setUIActive(false);
     }
 
     void Update()
@@ -115,7 +112,13 @@ public class HammerHitMole : MonoBehaviour
             }
         }
     }
-
+    public void setUIActive(bool act)
+	{
+        scoreText.gameObject.SetActive(act);
+        timeText.gameObject.SetActive(act);
+        narratorText.enabled = act;
+        panel.gameObject.SetActive(act);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Mole")

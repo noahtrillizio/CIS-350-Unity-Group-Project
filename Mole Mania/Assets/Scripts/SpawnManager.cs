@@ -65,12 +65,19 @@ public class SpawnManager : MonoBehaviour
     {
         //add a 3 second delay before first spawning moles
         yield return new WaitForSeconds(2f);
-
+        int scoreMod;
         while (!goodEnd)
         {
             SpawnMole();
-            spawnDelayMin = 4 - Mathf.FloorToInt(scoreManager.score / 8);
-            spawnDelayMax = 6 - Mathf.FloorToInt(scoreManager.score / 3);
+            if (scoreManager.score > 30)
+                scoreMod = (scoreManager.score % 40) + 20;
+            else
+                scoreMod = scoreManager.score;
+
+
+            spawnDelayMin = 4 - Mathf.FloorToInt(scoreMod / 3);
+            spawnDelayMax = 6 - Mathf.FloorToInt(scoreMod / 3);
+
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);

@@ -890,6 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a0a2bd5d1f1a45b178b2fe0bee365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerHitMoleScript: {fileID: 924013873463480350}
   endingText: {fileID: 728064692}
   mainCam: {fileID: 534669904}
   badEndCam: {fileID: 928882636}

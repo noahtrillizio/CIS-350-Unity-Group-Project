@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Anna Breuker, Noah Trillizio, Ian Connors
+ * Project 2 Mole Mania
+ * Manages what ending occurs when timer.gameOver = true
+ */
 public class EndlessSpawn : MonoBehaviour
 {
     public GameObject[] moles;
@@ -31,32 +35,41 @@ public class EndlessSpawn : MonoBehaviour
 
     void Update()
     {
-        if (scoreManager.score >= 30)
-        {
-            spawnDelayMin = 1f;
-            spawnDelayMax = 1.5f;
-        }
-        else if (scoreManager.score >= 20)
-        {
-            spawnDelayMin = 1f;
-            spawnDelayMax = 2f;
-        }
-        else if (scoreManager.score >= 10)
-        {
-            spawnDelayMin = 1f;
-            spawnDelayMax = 2.5f;
-        }
+        //if (scoreManager.score >= 30)
+        //{
+        //    spawnDelayMin = 1f;
+        //    spawnDelayMax = 1.5f;
+        //}
+        //else if (scoreManager.score >= 20)
+        //{
+        //    spawnDelayMin = 1f;
+        //    spawnDelayMax = 2f;
+        //}
+        //else if (scoreManager.score >= 10)
+        //{
+        //    spawnDelayMin = 1f;
+        //    spawnDelayMax = 2.5f;
+        //}
     }
 
     IEnumerator SpawnRandomPrefabWithCoroutine()
     {
         //add a 3 second delay before first spawning moles
         yield return new WaitForSeconds(2f);
-
+        int scoreMod;
         while (true)
         {
             SpawnMole();
+            if (scoreManager.score > 30)
+                scoreMod = (scoreManager.score % 40) + 20;
+            else
+                scoreMod = scoreManager.score;
 
+
+            spawnDelayMin = 4 - Mathf.FloorToInt(scoreMod / 3);
+            spawnDelayMax = 6 - Mathf.FloorToInt(scoreMod / 3);
+			
+            
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);
