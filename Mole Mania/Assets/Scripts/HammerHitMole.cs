@@ -55,7 +55,7 @@ public class HammerHitMole : MonoBehaviour
         {
             HitGround.Play();
             CurrentSounds++;
-            gameTime.timerIsRunning = true;
+            //gameTime.timerIsRunning = true;
         }
         else if (CurrentSounds == 1)
         {
@@ -101,6 +101,7 @@ public class HammerHitMole : MonoBehaviour
             narratorText.text = "";
             BackgroundMusic.Play();
             scoreText.gameObject.SetActive(true);
+            gameTime.timerIsRunning = true;
             timeText.gameObject.SetActive(true);
             panel.gameObject.SetActive(false);
             CurrentSounds++;
