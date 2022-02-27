@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker, Jacob Zydorowicz, Trillizio, Caleb Kahn
+ * Anna Breuker, Jacob Zydorowicz, Trillizio, Caleb Kahn, Ian Connors
  * Project 2
  * This scripts manages the moles that spawn and where they spawn.
  */
@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     private bool started = false;
 
     public GameObject explosionMoles;
-    bool goodEnd = false;
+    public bool goodEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +69,8 @@ public class SpawnManager : MonoBehaviour
         while (!goodEnd)
         {
             SpawnMole();
-
+            spawnDelayMin = 4 - Mathf.FloorToInt(scoreManager.score / 8);
+            spawnDelayMax = 6 - Mathf.FloorToInt(scoreManager.score / 3);
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);
@@ -102,9 +103,6 @@ public class SpawnManager : MonoBehaviour
 
             else if (scoreManager.score < scoreToChangeMoles[2] && scoreManager.score > scoreToChangeMoles[1] - 1)
                 Instantiate(moles[2], spawnPos, moles[2].transform.rotation);
-
-            else if (scoreManager.score > scoreToChangeMoles[2] - 1)
-                Instantiate(moles[3], spawnPos, moles[3].transform.rotation);
 
             moleHere[locationIndex] = true;
         }

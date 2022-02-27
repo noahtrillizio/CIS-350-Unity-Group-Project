@@ -1051,6 +1051,8 @@ MonoBehaviour:
   - {fileID: 1000011065765387}
   healthBar: {fileID: 0}
   healthBarGameObject: {fileID: 0}
+  spawnManager: {fileID: 958895057}
+  scoreManager: {fileID: 1228862790}
   timer: {fileID: 705350056}
   machineMat:
   - {fileID: 2100000, guid: 779002d9375a3354cbd3b50db6a72063, type: 2}
@@ -1655,8 +1657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8371dafe398714fb5a998200322f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 600
-  timeRemaining: 600
+  maxTime: 360
+  timeRemaining: 360
   timerIsRunning: 0
   gameOver: 0
   timeText: {fileID: 396887828}
@@ -2141,13 +2143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moles:
-  - {fileID: 9001911591384743816, guid: 9c31feb6cecbb4f4a85cf5cbbab211f9, type: 3}
   - {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
   - {fileID: 9059085704147902902, guid: 22637b04d4edc644d948798ecdd89d2b, type: 3}
   - {fileID: 862166095033528265, guid: 6796d29b4d150254c9643be387b41cbb, type: 3}
-  scoreToChangeMoles: 050000000f0000001e0000002d000000
-  spawnDelayMin: 1.5
-  spawnDelayMax: 3
+  scoreToChangeMoles: 070000001a00000050000000
+  spawnDelayMin: 3
+  spawnDelayMax: 6
   spawnX:
   - 1
   - -7.5
@@ -2170,6 +2171,9 @@ MonoBehaviour:
   spawnPosY: 15.5
   locationIndex: 0
   startSpawn: {fileID: 924013873463480350}
+  explosionMoles: {fileID: 7641818121043144788, guid: 1a82b4b46568f054f8b7686ab904c32e,
+    type: 3}
+  goodEnd: 0
 --- !u!4 &958895058
 Transform:
   m_ObjectHideFlags: 0
@@ -2593,6 +2597,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300006, guid: 5c5915e3b1cd1e9498fc34258639b7e5, type: 3}
+--- !u!114 &1228862790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3091957387444221020, guid: 5e3d5009d5e1b0f46a36602da946a985,
+    type: 3}
+  m_PrefabInstance: {fileID: 3091957387696103171}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a3fb0ee1b14754788f3a2e31124c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1230000945
 PrefabInstance:
   m_ObjectHideFlags: 0

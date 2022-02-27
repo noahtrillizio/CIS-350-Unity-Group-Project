@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker
+ * Anna Breuker, Ian Connors
  * Mole Mania
  * This script makes the moles move up and down.
  * Might make them do other things once we figure out the timer.
@@ -37,14 +37,15 @@ public class MoleMove : MonoBehaviour
         //add a 1 second delay before first spawning objects
         yield return new WaitForSeconds(1.0f);
 
-        while (true)
-        {
+        //while (true)
+        //{
             MoveMole();
 
             float randomDelay = Random.Range(3.0f, 5.0f);
 
             yield return new WaitForSeconds(randomDelay);
-        }
+        Destroy(gameObject);
+        //}
 
     }
     void MoveMole()
@@ -54,11 +55,11 @@ public class MoleMove : MonoBehaviour
             transform.position = new Vector3(xPos, yPos + speed, zPos); 
             isUp = true;
         }
-        else 
-        {
-            transform.position = new Vector3(xPos, yPos, zPos);
-            isUp = false;
-        }
+        //else 
+        //{
+        //    transform.position = new Vector3(xPos, yPos, zPos);
+        //    isUp = false;
+        //}
     }
     
 

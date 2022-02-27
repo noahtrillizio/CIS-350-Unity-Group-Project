@@ -24,6 +24,9 @@ public class MachineMovement : MonoBehaviour
     public Slider healthBar;
     public GameObject healthBarGameObject;
 
+    public SpawnManager spawnManager;
+    public ScoreManager scoreManager;
+
     public Timer timer;
 
     public Queue<int> lightQueue;
@@ -100,7 +103,7 @@ public class MachineMovement : MonoBehaviour
             else if (correctPats == 3)
             {
                 if (!matChange)
-                    StartCoroutine(machineBreakFlashiness(machineMat[0], machineMat[2], 25));
+                    StartCoroutine(machineBreakFlashiness(machineMat[0], machineMat[2], 19));
                 healthBar.value = 65;
             }
             else if (correctPats == 4)
@@ -112,7 +115,7 @@ public class MachineMovement : MonoBehaviour
             else if (correctPats == 5)
             {
                 if (!matChange)
-                    StartCoroutine(machineBreakFlashiness(machineMat[2], machineMat[1], 15));
+                    StartCoroutine(machineBreakFlashiness(machineMat[2], machineMat[1], 13));
                 healthBar.value = 43;
             }
             else if (correctPats == 6)
@@ -139,6 +142,10 @@ public class MachineMovement : MonoBehaviour
                     StartCoroutine(machineBreakFlashiness(machineMat[3], machineMat[4], 30));
                 timer.gameOver = true;
                 healthBar.value = 0;
+                if (scoreManager.score == 0)
+				{
+                    spawnManager.goodEnd = true;
+				}
                 StopAllCoroutines();
             }
 
