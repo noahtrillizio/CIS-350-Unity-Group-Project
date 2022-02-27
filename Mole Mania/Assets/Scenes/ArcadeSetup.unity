@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4481166, g: 0.498132, b: 0.5755416, a: 1}
+  m_IndirectSpecularColor: {r: 0.44811714, g: 0.49813294, b: 0.5755426, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -628,6 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseNum: 0
+  firstLight: 0
   newTopLightPos: {x: 0, y: 0, z: 0}
   oldTopPos: {x: 0, y: 0, z: 0}
   newBotLightPos: {x: 0, y: 0, z: 0}
@@ -645,6 +646,8 @@ MonoBehaviour:
   timer: {fileID: 705350056}
   machineBroke: {fileID: 2100000, guid: c1f43dd8b97605847a7b2f322c934ef7, type: 2}
   machineDead: {fileID: 2100000, guid: feaae20078061a047a69084691029f89, type: 2}
+  MachineSFX: {fileID: 534593008}
+  machineHitSound: {fileID: 8300000, guid: f64054e2f5a366b43bc4e422ca898d01, type: 3}
 --- !u!114 &534593007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,9 +1372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moles: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-  fakeMoles: {fileID: 9001911591384743816, guid: 9c31feb6cecbb4f4a85cf5cbbab211f9,
-    type: 3}
-  machineScript: {fileID: 534593006}
   spawnX:
   - 1
   - -7.5

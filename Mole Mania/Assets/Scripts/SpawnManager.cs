@@ -11,9 +11,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject moles;
-    public GameObject fakeMoles;
+    private Timer time;
 
-    public MachineMovement machineScript;
 
     //where the mole positions are stored
     public float[] spawnX;
@@ -25,8 +24,16 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        machineScript = GameObject.FindGameObjectWithTag("Machine").GetComponent<MachineMovement>();
+        time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         StartCoroutine(SpawnRandomPrefabWithCoroutine());
+    }
+
+    private void Update()
+    {
+        if(time.gameOver)
+        {
+            StopAllCoroutines();
+        }
     }
 
     IEnumerator SpawnRandomPrefabWithCoroutine()
@@ -55,14 +62,10 @@ public class SpawnManager : MonoBehaviour
         //spawn mole
         if (!moleHere[locationIndex])
         {
-            if(machineScript.phaseNum ==0)
-            {
-                Instantiate(fakeMoles, spawnPos, moles.transform.rotation);
-            }
-            else
-            {
-                Instantiate(moles, spawnPos, moles.transform.rotation);
-            }
+          
+            
+            Instantiate(moles, spawnPos, moles.transform.rotation);
+           
             
             moleHere[locationIndex] = true;
         }

@@ -48,25 +48,32 @@ public class HitMachine : MonoBehaviour
             //if machine spot is clicked, resets lights
             if (canHit && hit.collider.name != "Hatch")
             {
+                //enables healthbar on machineMovement script
+                if(!machineScript.firstLight)
+                {
+                    machineScript.firstLight = true;
+                }
 
                 canHit = false;
                 lightColor.SetColor("_EmissionColor", Color.black);
 
+                //hitting sound
                 GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
                 Destroy(clone, 1.0f);
-                MachineSFX.PlayOneShot(machineHitSound, 1.0f); //hi i changed this, it should work but the script never? gets to this point?
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f); 
 
+                //determines which light is hit and how to procede
                 if (hit.collider.name == "Hatch Light")
                 {
                     machineScript.lightQueue.Enqueue(0);
                     GameObject.FindGameObjectWithTag("Hatch").transform.position = machineScript.oldHatchPos;
                 }
-                if (hit.collider.name == "LRLight")
+                else if (hit.collider.name == "LRLight")
                 {
                     machineScript.lightQueue.Enqueue(1);
                     
                 }
-                if (hit.collider.name == "ULLight")
+                else if (hit.collider.name == "ULLight")
                 {
                     machineScript.lightQueue.Enqueue(2);
                     
@@ -83,11 +90,6 @@ public class HitMachine : MonoBehaviour
                     machineScript.lightQueue.Enqueue(4);
                 }
             }
-
-
-
-        }
-
-       
+        }  
     }
 }
