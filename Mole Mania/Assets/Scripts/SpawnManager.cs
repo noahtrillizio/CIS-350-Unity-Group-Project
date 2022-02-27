@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker, Jacob Zydorowicz, Trillizio
+ * Anna Breuker, Jacob Zydorowicz, Trillizio, Caleb Kahn
  * Project 2
  * This scripts manages the moles that spawn and where they spawn.
  */
@@ -30,9 +30,13 @@ public class SpawnManager : MonoBehaviour
 
     private bool started = false;
 
+    public GameObject explosionMoles;
+    bool goodEnd = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        //goodEnd = true;//Temp
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         //startSpawn = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerHitMole>();
@@ -62,13 +66,19 @@ public class SpawnManager : MonoBehaviour
         //add a 3 second delay before first spawning moles
         yield return new WaitForSeconds(2f);
 
-        while (true)
+        while (!goodEnd)
         {
             SpawnMole();
 
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);
+        }
+
+        while (true)
+        {
+            SpawnExplosion();
+            yield return new WaitForSeconds(Random.Range(.05f, .25f));
         }
     }
 
@@ -100,4 +110,16 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+
+    void SpawnExplosion()
+    {
+        //pick mole hole
+        locationIndex = Random.Range(0, spawnX.Length);
+
+        //generate a random spawn position from mole holes
+        Vector3 spawnPos = new Vector3(spawnX[locationIndex], spawnPosY, spawnZ[locationIndex]);
+
+        //spawn mole
+        Instantiate(explosionMoles, spawnPos, moles[0].transform.rotation);
+    }
 }

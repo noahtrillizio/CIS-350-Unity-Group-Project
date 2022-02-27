@@ -21,6 +21,7 @@ TagManager:
   - Timer
   - Slider
   - EndingManager
+  - Text
   layers:
   - Default
   - TransparentFX
