@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class MachineMovement : MonoBehaviour
 {
-    private int correctPats;
+    public int correctPats;
     public int phaseNum;
 
     private bool activePattern;

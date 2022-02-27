@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     public float spawnPosY = 17;
     public int locationIndex;
 
-    private HammerHitMole startSpawn;
+    public HammerHitMole startSpawn;
 
     private bool started = false;
 
@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
     {
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        startSpawn = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerHitMole>();
+        //startSpawn = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerHitMole>();
         //StartCoroutine(SpawnRandomPrefabWithCoroutine());
     }
 
