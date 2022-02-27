@@ -24,10 +24,14 @@ public class HammerHitMole : MonoBehaviour
     public TextMesh scoreText;
     public TextMesh timeText;
 
-    private float soundChanger;
-    private float CurrentSounds = 0;
+    public Text narratorText;
 
-    private float Timer = 160;
+    public GameObject panel;
+
+    private float soundChanger;
+    public float CurrentSounds = 0;
+
+    private float Timer = 176;
 
     void Start()
     {
@@ -36,6 +40,8 @@ public class HammerHitMole : MonoBehaviour
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         scoreText.gameObject.SetActive(false);
         timeText.gameObject.SetActive(false);
+        narratorText.enabled = false;
+        panel.gameObject.SetActive(false);
     }
 
     void Update()
@@ -45,24 +51,61 @@ public class HammerHitMole : MonoBehaviour
             Falling.Play();
             CurrentSounds++;
         }
-        if (CurrentSounds == 1)
-        {
-            Timer--;
-        }
-        if (CurrentSounds == 1 && Timer == 0)
+        else if (CurrentSounds == 1 && Timer == 0)
         {
             HitGround.Play();
             CurrentSounds++;
             gameTime.timerIsRunning = true;
-            scoreText.gameObject.SetActive(true);
-            timeText.gameObject.SetActive(true);
         }
-        if (CurrentSounds == 2)
+        else if (CurrentSounds == 1)
         {
-            BackgroundMusic.Play();
+            Timer--;
+        }
+        else if (CurrentSounds == 2)
+        {
+            Timer = 40;
             CurrentSounds++;
         }
-        if (CurrentSounds == 3)
+        else if (CurrentSounds == 3 && Timer == 0)
+        {
+            narratorText.enabled = true;
+            panel.gameObject.SetActive(true);
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 3)
+        {
+            Timer--;
+        }
+        else if (CurrentSounds == 4 && Input.GetKeyDown(KeyCode.Space))
+        {
+            narratorText.text = "This may look like an ordinary wack-a-mole machine in a back room but I asure you its anything but.";
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 5 && Input.GetKeyDown(KeyCode.Space))
+        {
+            narratorText.text = "This is the where your metal will be tested to see if you can truly claim yourself to be the legondary waker of moles!";
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 6 && Input.GetKeyDown(KeyCode.Space))
+        {
+            narratorText.text = "If you feel the challange is to insermountable you may leave at any point.";
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 7 && Input.GetKeyDown(KeyCode.Space))
+        {
+            narratorText.text = "However, I see a fire eyes that says you will see this threw to the end!";
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 8 && Input.GetKeyDown(KeyCode.Space))
+        {
+            narratorText.text = "";
+            BackgroundMusic.Play();
+            scoreText.gameObject.SetActive(true);
+            timeText.gameObject.SetActive(true);
+            panel.gameObject.SetActive(false);
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 9)
         {
             soundChanger = (scoreManagerScript.score) * .01f;
             if (scoreManagerScript.score >= 3)

@@ -1,5 +1,5 @@
 ﻿/*
- * Jacob Zydorowicz, Noah Trillizio
+ * Jacob Zydorowicz
  * Project 2 Mole Mania
  * Timer for game in seconds
  */
