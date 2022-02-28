@@ -32,6 +32,8 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject explosionMoles;
     public bool goodEnd = false;
+    private float timer = 0;
+    private float ranTime = .25f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,11 +61,16 @@ public class SpawnManager : MonoBehaviour
         {
             StopAllCoroutines();
         }
-    }
-    public void goodEndStart()
-    {
-        Debug.Log("F");
-        StartCoroutine(SpawnRandomPrefabWithCoroutine());
+
+        if (goodEnd) {
+            timer += Time.deltaTime;
+            if (timer > ranTime)
+            {
+                ranTime = Random.Range(.05f, .25f);
+                SpawnExplosion();
+                timer = 0;
+            }
+        }
     }
     IEnumerator SpawnRandomPrefabWithCoroutine()
     {
@@ -102,12 +109,6 @@ public class SpawnManager : MonoBehaviour
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);
-        }
-
-        while (true)
-        {
-            SpawnExplosion();
-            yield return new WaitForSeconds(Random.Range(.05f, .25f));
         }
     }
     IEnumerator WaitForMole(int location)

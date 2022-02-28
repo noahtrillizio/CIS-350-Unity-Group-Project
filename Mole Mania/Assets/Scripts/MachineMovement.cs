@@ -147,7 +147,6 @@ public class MachineMovement : MonoBehaviour
                     spawnManager.goodEnd = true;
 				}
                 StopAllCoroutines();
-                spawnManager.goodEndStart();
             }
 
             //starts light pattern when one is not actively showing
@@ -260,7 +259,7 @@ public class MachineMovement : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(6.5f);
 
             //checks if player correctly inputs light order
             int []lightCheck = lightQueue.ToArray();
