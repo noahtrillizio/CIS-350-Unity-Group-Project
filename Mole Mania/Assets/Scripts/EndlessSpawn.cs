@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /*
  * Anna Breuker, Noah Trillizio, Ian Connors
  * Project 2 Mole Mania
@@ -13,6 +14,7 @@ public class EndlessSpawn : MonoBehaviour
 
     private Timer time;
     private ScoreManager scoreManager;
+    public GameObject controlsText;
 
     public float spawnDelayMin = 1.5f;
     public float spawnDelayMax = 3.0f;
@@ -32,6 +34,7 @@ public class EndlessSpawn : MonoBehaviour
         time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         StartCoroutine(SpawnRandomPrefabWithCoroutine());
+        controlsText.SetActive(false);
     }
 
     void Update()
@@ -51,12 +54,21 @@ public class EndlessSpawn : MonoBehaviour
         //    spawnDelayMin = 1f;
         //    spawnDelayMax = 2.5f;
         //}
+        if (Input.GetKeyDown(KeyCode.R)) // reset
+        {
+            SceneManager.LoadScene("EndlessMode");
+        }
+        if (Input.GetKeyDown(KeyCode.T)) // title screen
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
     }
 
     IEnumerator SpawnRandomPrefabWithCoroutine()
     {
         //add a 3 second delay before first spawning moles
         yield return new WaitForSeconds(2f);
+        controlsText.SetActive(true);
         while (true)
         {
             SpawnMole();

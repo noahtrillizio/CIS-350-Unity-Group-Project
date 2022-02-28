@@ -43,10 +43,14 @@ public class EndingManager : MonoBehaviour
         else if (machineScript.correctPats == 9)
         {
             spawnManagerScript.goodEnd = true;
-            endingText.text = ("You destroyed the machine and freed the moles!\nPress R to restart");
+            endingText.text = ("You destroyed the machine and freed the moles!\nPress R to restart\nPress T to return to title");
             if (Input.GetKeyDown(KeyCode.R)) //reset
             {
                 SceneManager.LoadScene("ArcadeSetup");
+            }
+            if (Input.GetKeyDown(KeyCode.T)) // title screen
+            {
+                SceneManager.LoadScene("Tutorial");
             }
 
         }
@@ -76,14 +80,18 @@ public class EndingManager : MonoBehaviour
         {
             SceneManager.LoadScene("ArcadeSetup");
         }
+        if (Input.GetKeyDown(KeyCode.T)) // title screen
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
     }
     IEnumerator ChangeBadEndText()
     {
-    endingText.text = ("Your score: " + scoreManagerScript.score + "\nPress R to restart");
+    endingText.text = ("Your score: " + scoreManagerScript.score + "\nPress R to restart\nPress T to return to title");
 
     yield return new WaitForSeconds(5f);
 
-    endingText.text = ("Moles killed: " + scoreManagerScript.score + "\nPress R to restart");
+    endingText.text = ("Moles killed: " + scoreManagerScript.score + "\nPress R to restart\nPress T to return to title");
 
         yield return new WaitForSeconds(2f);
     }
