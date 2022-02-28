@@ -60,25 +60,38 @@ public class EndlessSpawn : MonoBehaviour
         while (true)
         {
             SpawnMole();
-            if (scoreManager.score > 10)
-                scoreMod = (scoreManager.score % 40) + (scoreManager.score / 10);
-            else
-                scoreMod = scoreManager.score;
 
-   //         if (scoreMod == 30)
-			//{
-   //             for (int i = 0; i < moleHere.Length; i ++)
-   //                 moleHere[locationIndex] = false;
-   //         }
-
-            spawnDelayMin = 3 - Mathf.FloorToInt(scoreMod / 7);
-            spawnDelayMax = 4 - Mathf.FloorToInt(scoreMod / 7);
-
-            if (spawnDelayMin < 0.2f)
+            if (scoreManager.score < 10)
+            {
+                spawnDelayMin = 3;
+                spawnDelayMax = 6;
+            }
+            if (scoreManager.score < 20 && scoreManager.score > 10)
+            {
+                spawnDelayMin = 1;
+                spawnDelayMax = 4;
+            }
+            if (scoreManager.score < 40 && scoreManager.score > 20)
+            {
+                spawnDelayMin = 0.3f;
+                spawnDelayMax = 2;
+            }
+            if (scoreManager.score > 40 && scoreManager.score < 45)
+            {
+                spawnDelayMin = 1;
+                spawnDelayMax = 3;
+            }
+            if (scoreManager.score > 45)
+            {
                 spawnDelayMin = 0.2f;
-            if (spawnDelayMax < 0.2f)
-                spawnDelayMax = 0.2f;
-            
+                spawnDelayMax = 1.5f;
+            }
+            if (scoreManager.score > 87)
+            {
+                spawnDelayMin = 0.2f;
+                spawnDelayMax = 0.7f;
+            }
+
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
             yield return new WaitForSeconds(randomDelay);
