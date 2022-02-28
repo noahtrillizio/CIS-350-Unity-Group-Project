@@ -23,6 +23,7 @@ public class EndlessSpawn : MonoBehaviour
     public bool[] moleHere;
     public float spawnPosY = 17;
     public int locationIndex;
+    private int scoreMod;
 
     // Start is called before the first frame update
     void Start()
@@ -56,19 +57,27 @@ public class EndlessSpawn : MonoBehaviour
     {
         //add a 3 second delay before first spawning moles
         yield return new WaitForSeconds(2f);
-        int scoreMod;
         while (true)
         {
             SpawnMole();
-            if (scoreManager.score > 30)
-                scoreMod = (scoreManager.score % 40) + 20;
+            if (scoreManager.score > 10)
+                scoreMod = (scoreManager.score % 40) + (scoreManager.score / 10);
             else
                 scoreMod = scoreManager.score;
 
+   //         if (scoreMod == 30)
+			//{
+   //             for (int i = 0; i < moleHere.Length; i ++)
+   //                 moleHere[locationIndex] = false;
+   //         }
 
-            spawnDelayMin = 4 - Mathf.FloorToInt(scoreMod / 3);
-            spawnDelayMax = 6 - Mathf.FloorToInt(scoreMod / 3);
-			
+            spawnDelayMin = 3 - Mathf.FloorToInt(scoreMod / 7);
+            spawnDelayMax = 4 - Mathf.FloorToInt(scoreMod / 7);
+
+            if (spawnDelayMin < 0.2f)
+                spawnDelayMin = 0.2f;
+            if (spawnDelayMax < 0.2f)
+                spawnDelayMax = 0.2f;
             
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
@@ -76,6 +85,11 @@ public class EndlessSpawn : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForMole(int location)
+    {
+        yield return new WaitForSeconds(6f);
+        moleHere[location] = false;
+    }
     void SpawnMole()
     {
         //pick mole hole
@@ -101,6 +115,7 @@ public class EndlessSpawn : MonoBehaviour
                 Instantiate(moles[3], spawnPos, moles[3].transform.rotation);
 
             moleHere[locationIndex] = true;
+            StartCoroutine(WaitForMole(locationIndex));
         }
     }
 }

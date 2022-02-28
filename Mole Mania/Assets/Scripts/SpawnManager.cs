@@ -60,7 +60,6 @@ public class SpawnManager : MonoBehaviour
             StopAllCoroutines();
         }
     }
-
     public void goodEndStart()
     {
         Debug.Log("F");
@@ -79,9 +78,31 @@ public class SpawnManager : MonoBehaviour
             else
                 scoreMod = scoreManager.score;
 
+            if (scoreManager.score < 20)
+			{
+                spawnDelayMin = 4 - Mathf.FloorToInt(scoreMod / 3);
+                spawnDelayMax = 6 - Mathf.FloorToInt(scoreMod / 3);
+			}
+            if (scoreManager.score < 40 && scoreManager.score > 20)
+            {
+                spawnDelayMin = 3 - Mathf.FloorToInt(scoreMod / 5);
+                spawnDelayMax = 5 - Mathf.FloorToInt(scoreMod / 5);
+            }
+            if (scoreManager.score > 40 && scoreManager.score < 60)
+            {
+                spawnDelayMin = 1;
+                spawnDelayMax = 3;
+            }
+            if (scoreManager.score > 60)
+            {
+                spawnDelayMin = 2;
+                spawnDelayMax = 4;
+            }
 
-            spawnDelayMin = 4 - Mathf.FloorToInt(scoreMod / 3);
-            spawnDelayMax = 6 - Mathf.FloorToInt(scoreMod / 3);
+            if (spawnDelayMin < 0.2f)
+                spawnDelayMin = 0.2f;
+            if (spawnDelayMax < 0.2f)
+                spawnDelayMax = 0.2f;
 
             float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
@@ -94,7 +115,11 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(.05f, .25f));
         }
     }
-
+    IEnumerator WaitForMole(int location)
+    {
+        yield return new WaitForSeconds(6f);
+        moleHere[location] = false;
+    }
     void SpawnMole()
     {
         //pick mole hole
@@ -117,6 +142,7 @@ public class SpawnManager : MonoBehaviour
                 Instantiate(moles[2], spawnPos, moles[2].transform.rotation);
 
             moleHere[locationIndex] = true;
+            StartCoroutine(WaitForMole(locationIndex));
         }
     }
 

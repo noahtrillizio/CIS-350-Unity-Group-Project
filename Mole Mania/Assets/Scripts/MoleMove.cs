@@ -61,6 +61,5 @@ public class MoleMove : MonoBehaviour
         //    isUp = false;
         //}
     }
-    
 
 }
