@@ -75,22 +75,22 @@ public class HammerHitMole : MonoBehaviour
         }
         else if (CurrentSounds == 4 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "This may look like an ordinary wack-a-mole machine in a back room, but I asure you its anything but.";
+            narratorText.text = "This may look like an ordinary wack-a-mole machine in a back room, but I assure you, its anything but!\n<Space To Continue>";
             CurrentSounds++;
         }
         else if (CurrentSounds == 5 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "This is the where your metal will be tested to see if you can truly claim yourself to be the legondary waker of moles!";
+            narratorText.text = "This is the where your metal will be tested to see if you can truly claim yourself to be the legendary whacker of moles!\n<Space To Continue>";
             CurrentSounds++;
         }
         else if (CurrentSounds == 6 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "If you feel the challange is too insermountable you may leave at any point.";
+            narratorText.text = "If you feel the challange is too insermountable you may leave at any point.\n<Space To Continue>";
             CurrentSounds++;
         }
         else if (CurrentSounds == 7 && Input.GetKeyDown(KeyCode.Space))
         {
-            narratorText.text = "However, I see a fire in your eyes that says you will see this through to the end!";
+            narratorText.text = "However, I see a fire in your eyes that says you will see this through to the end!\n<Space To Continue>";
             CurrentSounds++;
         }
         else if (CurrentSounds == 8 && Input.GetKeyDown(KeyCode.Space))

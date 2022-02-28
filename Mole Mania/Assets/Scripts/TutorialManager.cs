@@ -82,14 +82,14 @@ public class TutorialManager : MonoBehaviour
             //}
             if (Input.GetKeyDown(KeyCode.Space)&& textboxUpdater == 0)
             {
-                tutorialText.text = "You must be the legendary wacker of moles!";
+                tutorialText.text = "You must be the legendary whacker of moles!\n<Space To Continue>";
                 textboxUpdater++;
             }
             else if (Input.GetKeyDown(KeyCode.Space) && textboxUpdater == 1)
             {
                 posMovement++;
                 hammer.canSwing = true;
-                tutorialText.text = "Now take this legendary hammer of mole wacking, and click on the mole to wack him back into the darkness from which he came!";
+                tutorialText.text = "Now take this legendary hammer of mole wacking, and click on the mole to whack him back into the darkness from which he came!";
                 //textboxUpdater++;
                 mole = true;
             }
@@ -100,12 +100,12 @@ public class TutorialManager : MonoBehaviour
         else if (posMovement == 5) {
             if (textboxUpdater == 1)
             {
-                tutorialText.text = "Amazing!\nYou are truly the one destined to whack them all!";
+                tutorialText.text = "Amazing!\nYou are truly the one destined to whack them all!\n<Space To Continue>";
                 textboxUpdater++;
             }
             else if (Input.GetKeyDown(KeyCode.Space) && textboxUpdater == 2)
             {
-                tutorialText.text = "If you'll come with me your prowess is required elsewhere";
+                tutorialText.text = "If you'll come with me your prowess is required elsewhere\n<Space To Continue>";
                 textboxUpdater++;
             }
             else if (Input.GetKeyDown(KeyCode.Space) && textboxUpdater == 3)

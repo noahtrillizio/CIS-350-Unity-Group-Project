@@ -61,6 +61,11 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void goodEndStart()
+    {
+        Debug.Log("F");
+        StartCoroutine(SpawnRandomPrefabWithCoroutine());
+    }
     IEnumerator SpawnRandomPrefabWithCoroutine()
     {
         //add a 3 second delay before first spawning moles

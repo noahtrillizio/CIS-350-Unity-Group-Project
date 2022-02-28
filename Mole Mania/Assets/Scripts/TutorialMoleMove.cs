@@ -26,7 +26,7 @@ public class TutorialMoleMove : MonoBehaviour
     {
         if (tm.mole)
         {
-            transform.Translate(Vector3.up * .6f);
+            transform.Translate(Vector3.up * .7f);
             tm.mole = false;
         }
         if (!isUp)
@@ -46,7 +46,7 @@ public class TutorialMoleMove : MonoBehaviour
         if(tm.timer > .45f) {
             tm.timer = 0;
             tm.posMovement++;
-            transform.Translate(Vector3.down * .6f);
+            transform.Translate(Vector3.down * .7f);
             //GameObject clone = (GameObject)Instantiate(SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
             TutorialMolesHit.Play();
         }

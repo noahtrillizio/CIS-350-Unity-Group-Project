@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44811964, g: 0.4981333, b: 0.57554305, a: 1}
+  m_IndirectSpecularColor: {r: 0.4481188, g: 0.49813253, b: 0.5755422, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3868,8 +3868,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28.4, y: 71.2}
-  m_SizeDelta: {x: 449.14, y: 171.33717}
+  m_AnchoredPosition: {x: -28.4, y: 69.5}
+  m_SizeDelta: {x: 449.14, y: 188.05074}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1769700177
 MonoBehaviour:
@@ -3902,7 +3902,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Good to see you've made it through in on peice!
+  m_Text: 'Good to see you''ve made it through in one piece!
+
+    <Space To Continue>'
 --- !u!222 &1769700178
 CanvasRenderer:
   m_ObjectHideFlags: 0

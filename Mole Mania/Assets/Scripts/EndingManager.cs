@@ -38,10 +38,13 @@ public class EndingManager : MonoBehaviour
     {
         if ((scoreManagerScript.score >= 80 || timer.gameOver) && machineScript.correctPats != 9)//score gets above a certain amount or time runs out.
         {
+            mainCam.enabled = false;
+            badEndCam.enabled = true;
             StartCoroutine(UncomfortableSilence());
         }
         else if (machineScript.correctPats == 9)
         {
+            spawnManagerScript.goodEnd = true;
             endingText.text = ("You destroyed the machine and freed the moles!\nPress R to restart");
             if (Input.GetKeyDown(KeyCode.R)) //reset
             {
@@ -56,8 +59,6 @@ public class EndingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         timer.gameOver = true;
-        mainCam.enabled = false;
-        badEndCam.enabled = true;
         //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-30, -40, 0); //this is buggy.
         //GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler(20, -90, 0); //this is also buggy.
         if (started == true)

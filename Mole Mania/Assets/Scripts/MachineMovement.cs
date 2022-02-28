@@ -147,6 +147,7 @@ public class MachineMovement : MonoBehaviour
                     spawnManager.goodEnd = true;
 				}
                 StopAllCoroutines();
+                spawnManager.goodEndStart();
             }
 
             //starts light pattern when one is not actively showing
