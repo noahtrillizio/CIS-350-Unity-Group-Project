@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Noah Trillizio
+ * Project 2 Mole Mania
+ * Controls mole movment in endless mode
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

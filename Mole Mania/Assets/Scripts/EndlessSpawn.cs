@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Noah Trillizio (Based off spawn manager)
+ * Project 2 Mole Mania
+ * Controls display of score and adjusts the difficulty
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

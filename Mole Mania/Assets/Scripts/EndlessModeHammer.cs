@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Noah Trillizio
+ * Project 2 Mole Mania
+ * Controls the whacking of the moles in endless mode
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
