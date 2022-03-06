@@ -95,6 +95,16 @@ public class HammerHitMole : MonoBehaviour
         }
         else if (CurrentSounds == 8 && Input.GetKeyDown(KeyCode.Space))
         {
+            narratorText.text = "Just make sure you don't destroy the machine, or all the moles will be free to attack you at once!\n<Space To Continue>";
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 9 && Input.GetKeyDown(KeyCode.Space))
+        {
+            narratorText.text = "It's quite sensitive after its done flashing its lights.\n<Space To Start>";
+            CurrentSounds++;
+        }
+        else if (CurrentSounds == 10 && Input.GetKeyDown(KeyCode.Space))
+        {
             narratorText.text = "";
             BackgroundMusic.Play();
             scoreText.gameObject.SetActive(true);
@@ -103,7 +113,7 @@ public class HammerHitMole : MonoBehaviour
             panel.gameObject.SetActive(false);
             CurrentSounds++;
         }
-        else if (CurrentSounds == 9)
+        else if (CurrentSounds == 11)
         {
             soundChanger = (scoreManagerScript.score) * .01f;
             if (scoreManagerScript.score >= 3)

@@ -27,7 +27,7 @@ public class NarratorMovment : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, movingUp.position, step);
         }
-        if (whenNarratorMoves == 9)
+        if (whenNarratorMoves == 11)
         {
             transform.position = Vector3.MoveTowards(transform.position, movingDown.position, step);
         }

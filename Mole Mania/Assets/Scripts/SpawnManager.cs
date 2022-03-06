@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Anna Breuker, Jacob Zydorowicz, Trillizio, Caleb Kahn, Ian Connors
+ * Anna Breuker, Jacob Zydorowicz, Noah Trillizio, Caleb Kahn, Ian Connors
  * Project 2
  * This scripts manages the moles that spawn and where they spawn.
  */

@@ -37,6 +37,8 @@ public class MachineMovement : MonoBehaviour
     public AudioSource MachineSFX;
     public AudioClip machineHitSound;
     public AudioSource failedPatternSound;
+    public AudioSource normalPlayMusic;
+    public AudioSource goodEndingMusic;
 
     void Start()
     {
@@ -147,6 +149,8 @@ public class MachineMovement : MonoBehaviour
                     spawnManager.goodEnd = true;
 				}
                 StopAllCoroutines();
+                normalPlayMusic.Stop();
+                goodEndingMusic.Play();
             }
 
             //starts light pattern when one is not actively showing
