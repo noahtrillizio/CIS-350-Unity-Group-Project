@@ -36,7 +36,7 @@ public class MachineMovement : MonoBehaviour
 
     public AudioSource MachineSFX;
     public AudioClip machineHitSound;
-    public AudioClip failedPatternSound;
+    public AudioSource failedPatternSound;
 
     void Start()
     {
@@ -271,7 +271,7 @@ public class MachineMovement : MonoBehaviour
                     if (!lightCheck[i].Equals(lightOrder[i]))
                     {
                         correctPattern = false;
-                        MachineSFX.PlayOneShot(failedPatternSound, 1.0f);
+                        failedPatternSound.Play();
                         break;
                     }
                     else
@@ -282,7 +282,7 @@ public class MachineMovement : MonoBehaviour
             }
             else if (lightCheck.Length >= 2)
             {
-                MachineSFX.PlayOneShot(failedPatternSound, 1.0f);
+                failedPatternSound.Play();
                 correctPattern = false;
             }
             else
