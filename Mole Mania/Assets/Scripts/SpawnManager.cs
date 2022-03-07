@@ -133,8 +133,30 @@ public class SpawnManager : MonoBehaviour
         else if (scoreManager.score < scoreToChangeMoles[1] && scoreManager.score > scoreToChangeMoles[0] - 1)
             molePrefabNum = 1;
 
-        else if (scoreManager.score > scoreToChangeMoles[1] - 1)
+        else if (scoreManager.score < scoreToChangeMoles[2] && scoreManager.score > scoreToChangeMoles[1] - 1)
+            molePrefabNum = Random.Range(1, 2);
+
+        else if (scoreManager.score > scoreToChangeMoles[2] - 1)
             molePrefabNum = 2;
+
+        if (scoreManager.score == 21)
+            molePrefabNum = 3;
+        if (scoreManager.score == 42)
+            molePrefabNum = 4;
+        if (scoreManager.score == 59)
+            molePrefabNum = 5;
+        if (scoreManager.score == 86)
+            molePrefabNum = 6;
+        if (scoreManager.score == 103)
+            molePrefabNum = 7;
+        if (scoreManager.score == 133)
+            molePrefabNum = 8;
+        if (scoreManager.score == 165)
+            molePrefabNum = 9;
+        if (scoreManager.score == 207)
+            molePrefabNum = 5;
+        if (scoreManager.score == 298)
+            molePrefabNum = 4;
 
         Instantiate(moles[molePrefabNum], spawnPos, moles[molePrefabNum].transform.rotation);
         moleHere[locationIndex] = true;

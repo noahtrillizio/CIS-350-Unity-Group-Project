@@ -1789,8 +1789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8371dafe398714fb5a998200322f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 360
-  timeRemaining: 360
+  maxTime: 300
+  timeRemaining: 300
   timerIsRunning: 0
   gameOver: 0
   timeText: {fileID: 396887828}
@@ -2369,7 +2369,14 @@ MonoBehaviour:
   - {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
   - {fileID: 9059085704147902902, guid: 22637b04d4edc644d948798ecdd89d2b, type: 3}
   - {fileID: 862166095033528265, guid: 6796d29b4d150254c9643be387b41cbb, type: 3}
-  scoreToChangeMoles: 070000001a00000050000000
+  - {fileID: 9059085704147902902, guid: 7e40e4037aa58784eacf5edbfa7e2bc8, type: 3}
+  - {fileID: 9059085704147902902, guid: bb25a83c39ecd1049a23a66e279c6c7f, type: 3}
+  - {fileID: 9059085704147902902, guid: 04116c41a4efee34887708d2e342c130, type: 3}
+  - {fileID: 9059085704147902902, guid: 60de2ee819ec70348b99ed13f2119c68, type: 3}
+  - {fileID: 9059085704147902902, guid: be287e0120397534e881f4357b49dffc, type: 3}
+  - {fileID: 9059085704147902902, guid: 2aa58fdd53942d14e884be30dd8170ae, type: 3}
+  - {fileID: 9059085704147902902, guid: 6d869b2437c316d4d8852156363d887e, type: 3}
+  scoreToChangeMoles: 110000002b0000005b000000
   spawnDelayMin: 3
   spawnDelayMax: 6
   spawnX:
@@ -2391,8 +2398,8 @@ MonoBehaviour:
   - 8
   - 8
   moleHere: 0000000000000000
-  spawnPosY: 15.5
-  locationIndex: 0
+  spawnPosY: 13.5
+  numOfMoles: 0
   startSpawn: {fileID: 924013873463480350}
   explosionMoles: {fileID: 7641818121043144788, guid: 1a82b4b46568f054f8b7686ab904c32e,
     type: 3}
@@ -6233,6 +6240,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MotionVectors
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691143461482151511, guid: 6683891cebcf0f148b393fa1d7eea0fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6299542787849732616, guid: 6683891cebcf0f148b393fa1d7eea0fa,
         type: 3}

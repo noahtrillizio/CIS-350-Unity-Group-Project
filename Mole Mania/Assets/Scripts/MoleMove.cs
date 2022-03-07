@@ -15,6 +15,7 @@ public class MoleMove : MonoBehaviour
     public float speed;
     public bool isUp;
     private SpawnManager spawnManagerScript;
+    private ScoreManager scoreManagerScript;
     public int posIndex = 0;
 
     private float yPos;
@@ -27,6 +28,9 @@ public class MoleMove : MonoBehaviour
         //Debug.Log("is this script even running");
         StartCoroutine(MoveMoleCoroutine());
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+        scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+
+        speed = 5 + scoreManagerScript.score * 5 / 100;
 
         xPos = transform.position.x;
         yPos = transform.position.y;
@@ -68,7 +72,7 @@ public class MoleMove : MonoBehaviour
         //{
             MoveMole();
 
-            float randomDelay = Random.Range(3.0f, 5.0f);
+            float randomDelay = Random.Range(15.0f/speed, 25.0f/speed);
 
             yield return new WaitForSeconds(randomDelay);
         spawnManagerScript.moleHere[posIndex] = false;
@@ -81,7 +85,7 @@ public class MoleMove : MonoBehaviour
     {
         if (!isUp)
         {
-            transform.position = new Vector3(xPos, yPos + speed, zPos); 
+            transform.position = new Vector3(xPos, yPos + 7, zPos); 
             isUp = true;
         }
         //else 
