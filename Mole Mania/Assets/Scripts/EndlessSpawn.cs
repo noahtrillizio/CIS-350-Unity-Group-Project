@@ -29,8 +29,7 @@ public class EndlessSpawn : MonoBehaviour
     public float[] spawnZ;
     public bool[] moleHere;
     public float spawnPosY = 17;
-    public int locationIndex;
-    private int scoreMod;
+    public int numOfMoles;
 
     // Start is called before the first frame update
     void Start()
@@ -76,76 +75,66 @@ public class EndlessSpawn : MonoBehaviour
         controlsText.SetActive(true);
         while (true)
         {
-            SpawnMole();
+            //doesn't spawn mole if all the holes are occupied
+            yield return new WaitUntil(() => numOfMoles < 8);
+            while (numOfMoles < 8)
+            {
+                //finds an unoccupied hole
+                int location = Random.Range(0, spawnX.Length);
+                while (moleHere[location])
+                    location = Random.Range(0, spawnX.Length);
 
-            if (scoreManager.score < 10)
-            {
-                spawnDelayMin = 3;
-                spawnDelayMax = 6;
-            }
-            if (scoreManager.score < 20 && scoreManager.score > 10)
-            {
-                spawnDelayMin = 1;
-                spawnDelayMax = 4;
-            }
-            if (scoreManager.score < 40 && scoreManager.score > 20)
-            {
-                spawnDelayMin = 0.3f;
-                spawnDelayMax = 2;
-            }
-            if (scoreManager.score > 40 && scoreManager.score < 45)
-            {
-                spawnDelayMin = 1;
-                spawnDelayMax = 3;
-            }
-            if (scoreManager.score > 45)
-            {
-                spawnDelayMin = 0.2f;
-                spawnDelayMax = 1.5f;
-            }
-            if (scoreManager.score > 87)
-            {
-                spawnDelayMin = 0.2f;
-                spawnDelayMax = 0.7f;
-            }
+                //spawns a mole
+                SpawnMole(location);
 
-            float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
+                //changes speed of spawning based on score
+                if (scoreManager.score < 10)
+                {
+                    spawnDelayMin = 2;
+                    spawnDelayMax = 4;
+                }
+                if (scoreManager.score < 20 && scoreManager.score > 10)
+                {
+                    spawnDelayMin = 1;
+                    spawnDelayMax = 2;
+                }
+                if (scoreManager.score < 40 && scoreManager.score > 20)
+                {
+                    spawnDelayMin = 0.3f;
+                    spawnDelayMax = 1;
+                }
+                if (scoreManager.score > 40)
+                {
+                    spawnDelayMin = 0.1f;
+                    spawnDelayMax = 1;
+                }
+                float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
-            yield return new WaitForSeconds(randomDelay);
+                yield return new WaitForSeconds(randomDelay);
+            }
         }
-    }
 
-    IEnumerator WaitForMole(int location)
-    {
-        yield return new WaitForSeconds(6f);
-        moleHere[location] = false;
     }
-    void SpawnMole()
+    void SpawnMole(int locationIndex)
     {
-        //pick mole hole
-        locationIndex = Random.Range(0, spawnX.Length);
+        numOfMoles++;
 
         //generate a random spawn position from mole holes
         Vector3 spawnPos = new Vector3(spawnX[locationIndex], spawnPosY, spawnZ[locationIndex]);
 
         //spawn mole
-        if (!moleHere[locationIndex])
-        {
-            //choses which mole to spawn based on current score
-            if (scoreManager.score < scoreToChangeMoles[0])
-                Instantiate(moles[0], spawnPos, moles[0].transform.rotation);
+        int molePrefabNum = 0;
+        //choses which mole to spawn based on current score
+        if (scoreManager.score < scoreToChangeMoles[0])
+            molePrefabNum = 0;
 
-            else if (scoreManager.score < scoreToChangeMoles[1] && scoreManager.score > scoreToChangeMoles[0] - 1)
-                Instantiate(moles[1], spawnPos, moles[1].transform.rotation);
+        else if (scoreManager.score < scoreToChangeMoles[1] && scoreManager.score > scoreToChangeMoles[0] - 1)
+            molePrefabNum = 1;
 
-            else if (scoreManager.score < scoreToChangeMoles[2] && scoreManager.score > scoreToChangeMoles[1] - 1)
-                Instantiate(moles[2], spawnPos, moles[2].transform.rotation);
+        else if (scoreManager.score > scoreToChangeMoles[1] - 1)
+            molePrefabNum = 2;
 
-            else if (scoreManager.score > scoreToChangeMoles[2] - 1)
-                Instantiate(moles[3], spawnPos, moles[3].transform.rotation);
-
-            moleHere[locationIndex] = true;
-            StartCoroutine(WaitForMole(locationIndex));
-        }
+        Instantiate(moles[molePrefabNum], spawnPos, moles[molePrefabNum].transform.rotation);
+        moleHere[locationIndex] = true;
     }
 }

@@ -51,7 +51,8 @@ public class EndlessModeHammer : MonoBehaviour
         if (other.gameObject.tag == "Mole")
         {
             //Debug.Log("hit");
-            spawnManagerScript.moleHere[spawnManagerScript.locationIndex] = false;
+            spawnManagerScript.moleHere[other.GetComponent<EndlessMoveMole>().posIndex] = false;
+            spawnManagerScript.numOfMoles--;
             scoreManagerScript.score++;
             MoleRelatedSFX.PlayOneShot(molesHit, 1.0f);
             //GameObject clone = (GameObject)Instantiate(SpecialEffect, other.gameObject.transform.position, Quaternion.identity);

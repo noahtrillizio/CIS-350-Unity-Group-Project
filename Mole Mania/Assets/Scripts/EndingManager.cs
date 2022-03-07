@@ -36,8 +36,9 @@ public class EndingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((scoreManagerScript.score >= 80 || timer.gameOver) && machineScript.correctPats != 9)//score gets above a certain amount or time runs out.
+        if (timer.gameOver && machineScript.correctPats != 9)//score gets above a certain amount or time runs out.
         {
+            timer.gameOver = true;
             StartCoroutine(UncomfortableSilence());
         }
         else if (machineScript.correctPats == 9)
@@ -60,7 +61,6 @@ public class EndingManager : MonoBehaviour
     IEnumerator UncomfortableSilence()
     {
         yield return new WaitForSeconds(5f);
-        timer.gameOver = true;
         mainCam.enabled = false;
         badEndCam.enabled = true;
         //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-30, -40, 0); //this is buggy.

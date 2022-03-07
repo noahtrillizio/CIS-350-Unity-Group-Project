@@ -15,6 +15,7 @@ public class MoleMove : MonoBehaviour
     public float speed;
     public bool isUp;
     private SpawnManager spawnManagerScript;
+    public int posIndex = 0;
 
     private float yPos;
     private float xPos;
@@ -27,9 +28,35 @@ public class MoleMove : MonoBehaviour
         StartCoroutine(MoveMoleCoroutine());
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
 
-        xPos = spawnManagerScript.spawnX[spawnManagerScript.locationIndex];
-        yPos = spawnManagerScript.spawnPosY;
-        zPos = spawnManagerScript.spawnZ[spawnManagerScript.locationIndex];
+        xPos = transform.position.x;
+        yPos = transform.position.y;
+        zPos = transform.position.z;
+        if (zPos == -4)
+            posIndex = 3;
+        else if (zPos == 4)
+            posIndex = 2;
+
+        else if (zPos == 0)
+		{
+            if (xPos == 1)
+                posIndex = 0;
+			else
+                posIndex = 1;
+		}
+        else if (zPos == -8)
+		{
+            if (xPos == 1)
+                posIndex = 4;
+            else
+                posIndex = 5;
+        }
+        else if (zPos == 8)
+		{
+            if (xPos == 1)
+                posIndex = 6;
+            else
+                posIndex = 7;
+        }
     }
 
     IEnumerator MoveMoleCoroutine()
@@ -44,6 +71,8 @@ public class MoleMove : MonoBehaviour
             float randomDelay = Random.Range(3.0f, 5.0f);
 
             yield return new WaitForSeconds(randomDelay);
+        spawnManagerScript.moleHere[posIndex] = false;
+        spawnManagerScript.numOfMoles--;
         Destroy(gameObject);
         //}
 
