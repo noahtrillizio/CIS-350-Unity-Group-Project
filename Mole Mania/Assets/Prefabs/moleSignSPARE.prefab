@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 8497255460762129993}
   - component: {fileID: 1938809145936890091}
   m_Layer: 2
-  m_Name: moleSignPLS 1
+  m_Name: moleSignSPARE
   m_TagString: Mole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,6 +426,7 @@ MonoBehaviour:
   speed: 5
   isUp: 0
   posIndex: 0
+  isSignMole: 1
 --- !u!54 &1938809145936890091
 Rigidbody:
   m_ObjectHideFlags: 0

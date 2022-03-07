@@ -17,6 +17,7 @@ public class MoleMove : MonoBehaviour
     private SpawnManager spawnManagerScript;
     private ScoreManager scoreManagerScript;
     public int posIndex = 0;
+    public bool isSignMole;
 
     private float yPos;
     private float xPos;
@@ -29,9 +30,10 @@ public class MoleMove : MonoBehaviour
         StartCoroutine(MoveMoleCoroutine());
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-
-        speed = 5 + scoreManagerScript.score * 5 / 100;
-
+        if (!isSignMole)
+            speed = 5 + scoreManagerScript.score * 5 / 100;
+        else
+            speed = 5;
         xPos = transform.position.x;
         yPos = transform.position.y;
         zPos = transform.position.z;

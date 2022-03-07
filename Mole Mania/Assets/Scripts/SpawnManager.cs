@@ -35,6 +35,8 @@ public class SpawnManager : MonoBehaviour
     private float timer = 0;
     private float ranTime = .25f;
 
+    public bool[] moleSigns;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,32 +133,59 @@ public class SpawnManager : MonoBehaviour
             molePrefabNum = 0;
 
         else if (scoreManager.score < scoreToChangeMoles[1] && scoreManager.score > scoreToChangeMoles[0] - 1)
-            molePrefabNum = 1;
+            molePrefabNum = Random.Range(0, 2);
 
         else if (scoreManager.score < scoreToChangeMoles[2] && scoreManager.score > scoreToChangeMoles[1] - 1)
-            molePrefabNum = Random.Range(1, 2);
+            molePrefabNum = Random.Range(1, 3);
 
         else if (scoreManager.score > scoreToChangeMoles[2] - 1)
             molePrefabNum = 2;
 
-        if (scoreManager.score == 21)
+        if (scoreManager.score > 21 && !moleSigns[0])
+		{
             molePrefabNum = 3;
-        if (scoreManager.score == 42)
+            moleSigns[0] = true;
+        }
+        if (scoreManager.score > 46 && !moleSigns[1])
+        {
             molePrefabNum = 4;
-        if (scoreManager.score == 59)
+            moleSigns[1] = true;
+        }
+        if (scoreManager.score > 59 && !moleSigns[2])
+        {
             molePrefabNum = 5;
-        if (scoreManager.score == 86)
+            moleSigns[2] = true;
+        }
+        if (scoreManager.score > 86 && !moleSigns[3])
+        {
             molePrefabNum = 6;
-        if (scoreManager.score == 103)
+            moleSigns[3] = true;
+        }
+        if (scoreManager.score > 103 && !moleSigns[4])
+        {
             molePrefabNum = 7;
-        if (scoreManager.score == 133)
+            moleSigns[4] = true;
+        }
+        if (scoreManager.score > 133 && !moleSigns[5])
+        {
             molePrefabNum = 8;
-        if (scoreManager.score == 165)
+            moleSigns[5] = true;
+        }
+        if (scoreManager.score > 165 && !moleSigns[6])
+        {
             molePrefabNum = 9;
-        if (scoreManager.score == 207)
+            moleSigns[6] = true;
+        }
+        if (scoreManager.score > 207 && !moleSigns[7])
+        {
             molePrefabNum = 5;
-        if (scoreManager.score == 298)
+            moleSigns[7] = true;
+        }
+        if (scoreManager.score > 298 && !moleSigns[8])
+        {
             molePrefabNum = 4;
+            moleSigns[8] = true;
+        }
 
         Instantiate(moles[molePrefabNum], spawnPos, moles[molePrefabNum].transform.rotation);
         moleHere[locationIndex] = true;

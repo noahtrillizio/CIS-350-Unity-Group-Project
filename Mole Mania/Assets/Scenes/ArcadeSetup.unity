@@ -2376,7 +2376,7 @@ MonoBehaviour:
   - {fileID: 9059085704147902902, guid: be287e0120397534e881f4357b49dffc, type: 3}
   - {fileID: 9059085704147902902, guid: 2aa58fdd53942d14e884be30dd8170ae, type: 3}
   - {fileID: 9059085704147902902, guid: 6d869b2437c316d4d8852156363d887e, type: 3}
-  scoreToChangeMoles: 110000002b0000005b000000
+  scoreToChangeMoles: 110000004c00000090000000
   spawnDelayMin: 3
   spawnDelayMax: 6
   spawnX:
@@ -2404,6 +2404,7 @@ MonoBehaviour:
   explosionMoles: {fileID: 7641818121043144788, guid: 1a82b4b46568f054f8b7686ab904c32e,
     type: 3}
   goodEnd: 0
+  moleSigns: 000000000000000000
 --- !u!4 &958895058
 Transform:
   m_ObjectHideFlags: 0

@@ -426,6 +426,7 @@ MonoBehaviour:
   speed: 5
   isUp: 0
   posIndex: 0
+  isSignMole: 1
 --- !u!54 &1938809145936890091
 Rigidbody:
   m_ObjectHideFlags: 0
