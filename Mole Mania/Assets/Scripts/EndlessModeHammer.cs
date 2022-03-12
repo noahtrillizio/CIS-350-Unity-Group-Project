@@ -18,8 +18,8 @@ public class EndlessModeHammer : MonoBehaviour
     public AudioClip molesHit;
     public AudioSource BackgroundMusic;
 
-    public TextMesh scoreText;
-    public TextMesh timeText;
+    public Text scoreText;
+    public Text timeText;
 
     private float soundChanger;
     public float CurrentSounds;

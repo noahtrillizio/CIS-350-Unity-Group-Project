@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -21,10 +22,10 @@ public class Timer : MonoBehaviour
     public bool gameOver;
 
 
-    public TextMesh timeText;
+    public Text timeText;
     void Start()
     {
-        maxTime = Mathf.FloorToInt(timeRemaining);
+        //maxTime = Mathf.FloorToInt(timeRemaining);
         display();
         timerIsRunning = false;
         gameOver = false;
@@ -37,7 +38,6 @@ public class Timer : MonoBehaviour
     {
         if(timerIsRunning && !gameOver)
         {
-            
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
@@ -52,6 +52,7 @@ public class Timer : MonoBehaviour
                 gameOver = true;
             }
             display();
+            
         }
     }
 

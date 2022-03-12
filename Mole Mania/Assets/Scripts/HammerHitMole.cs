@@ -21,8 +21,8 @@ public class HammerHitMole : MonoBehaviour
     public AudioSource Falling;
     public AudioSource HitGround;
 
-    public TextMesh scoreText;
-    public TextMesh timeText;
+    public Text scoreText;
+    public Text timeText;
 
     public Text narratorText;
 

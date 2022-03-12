@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMesh scoreText;
+    public Text scoreText;
     public int score = 0;
 
     void Start()
