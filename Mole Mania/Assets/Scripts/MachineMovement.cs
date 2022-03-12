@@ -289,7 +289,7 @@ public class MachineMovement : MonoBehaviour
                 }
             }
             //only plays in correct sound if more than 1 light is hit to allow player to accidently discover mechanics
-            else if (firstLight)
+            else if (lightCheck.Length >= 1)
             {
                 failedPatternSound.Play();
                 correctPattern = false;
@@ -348,4 +348,3 @@ public class MachineMovement : MonoBehaviour
        
     }
 }
-
