@@ -124,15 +124,6 @@ public class EndlessSpawn : MonoBehaviour
 
         //spawn mole
         int molePrefabNum = 0;
-        //choses which mole to spawn based on current score
-        if (scoreManager.score < scoreToChangeMoles[0])
-            molePrefabNum = 0;
-
-        else if (scoreManager.score < scoreToChangeMoles[1] && scoreManager.score > scoreToChangeMoles[0] - 1)
-            molePrefabNum = 1;
-
-        else if (scoreManager.score > scoreToChangeMoles[1] - 1)
-            molePrefabNum = 2;
 
         Instantiate(moles[molePrefabNum], spawnPos, moles[molePrefabNum].transform.rotation);
         moleHere[locationIndex] = true;

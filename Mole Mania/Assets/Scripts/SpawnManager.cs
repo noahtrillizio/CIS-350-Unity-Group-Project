@@ -141,6 +141,7 @@ public class SpawnManager : MonoBehaviour
         else if (scoreManager.score > scoreToChangeMoles[2] - 1)
             molePrefabNum = 2;
 
+        //spawns sign moles at certains scores
         if (scoreManager.score > 21 && !moleSigns[0])
 		{
             molePrefabNum = 3;
