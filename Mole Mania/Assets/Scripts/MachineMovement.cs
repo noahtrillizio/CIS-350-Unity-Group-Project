@@ -73,7 +73,7 @@ public class MachineMovement : MonoBehaviour
     void Update()
     {
         //"Phase 1" of machine where player plays simons says with machine lights
-        if (!timer.gameOver)
+        if (!timer.gameOver&&timer.timerIsRunning)
         {
           
 
@@ -233,6 +233,8 @@ public class MachineMovement : MonoBehaviour
         float waitTime = Random.Range(.5f, 1f);
         int timeInBetween = Random.Range(4, 5);
 
+        yield return new WaitForSeconds(Random.Range(10, 15));
+
         do
         {
             foreach(int light in lightOrder)
@@ -262,12 +264,14 @@ public class MachineMovement : MonoBehaviour
                 lights[i].GetComponent<HitMachine>().canHit = true;
             }
 
+            float playerInputWindow = waitForSecs(7f);
 
-            yield return new WaitForSeconds(6.5f);
+            yield return new WaitUntil(() => ((lightQueue.Count == 5)||(timer.timeRemaining <= playerInputWindow)));
 
             //checks if player correctly inputs light order
             int []lightCheck = lightQueue.ToArray();
 
+            //only checks correct pattern if minimum number of lights were hit
             if(lightCheck.Length==5)
             {
                 for (int i = 0; i < lightCheck.Length; i++)
@@ -284,15 +288,13 @@ public class MachineMovement : MonoBehaviour
                     }
                 }
             }
-            else if (lightCheck.Length >= 2)
+            //only plays in correct sound if more than 1 light is hit to allow player to accidently discover mechanics
+            else if (firstLight)
             {
                 failedPatternSound.Play();
                 correctPattern = false;
             }
-            else
-            {
-                correctPattern = false;
-            }
+           
 
             lightQueue.Clear();
 
@@ -329,6 +331,21 @@ public class MachineMovement : MonoBehaviour
 
         return pattern;
         
+    }
+
+    private float waitForSecs(float seconds)
+    {
+    
+        float waitForTime = timer.timeRemaining - seconds;
+
+        if (waitForTime > 0)
+        {
+            print(waitForTime);
+            return waitForTime;
+        }
+        else
+            return 0f;
+       
     }
 }
 
