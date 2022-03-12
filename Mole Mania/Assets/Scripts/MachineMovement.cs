@@ -294,7 +294,12 @@ public class MachineMovement : MonoBehaviour
                 failedPatternSound.Play();
                 correctPattern = false;
             }
-           
+            else if (firstLight)
+            {
+                failedPatternSound.Play();
+                correctPattern = false;
+            }
+
 
             lightQueue.Clear();
 
