@@ -34,6 +34,7 @@ public class HammerHitMole : MonoBehaviour
 
     private float Timer = 176;
     private HammerSwing hammer;
+    public Pause pause;
 
     void Start()
     {
@@ -76,37 +77,37 @@ public class HammerHitMole : MonoBehaviour
         {
             Timer--;
         }
-        else if (CurrentSounds == 4 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 4 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
             narratorText.text = "This may look like an ordinary wack-a-mole machine in a back room, but I assure you, its anything but!\n<Space To Continue>";
             CurrentSounds++;
         }
-        else if (CurrentSounds == 5 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 5 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
             narratorText.text = "This is the where your metal will be tested to see if you can truly claim yourself to be the legendary whacker of moles!\n<Space To Continue>";
             CurrentSounds++;
         }
-        else if (CurrentSounds == 6 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 6 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
-            narratorText.text = "If you feel the challange is too insermountable you may leave at any point.\n<Space To Continue>";
+            narratorText.text = "If you feel the challange is too insermountable you may leave at any point by pressing \"P\" to pause.\n<Space To Continue>";
             CurrentSounds++;
         }
-        else if (CurrentSounds == 7 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 7 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
             narratorText.text = "However, I see a fire in your eyes that says you will see this through to the end!\n<Space To Continue>";
             CurrentSounds++;
         }
-        else if (CurrentSounds == 8 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 8 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
             narratorText.text = "Just make sure you don't destroy the machine, or all the moles will be free to attack you at once!\n<Space To Continue>";
             CurrentSounds++;
         }
-        else if (CurrentSounds == 9 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 9 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
             narratorText.text = "It's quite sensitive after its done flashing its lights.\n<Space To Start>";
             CurrentSounds++;
         }
-        else if (CurrentSounds == 10 && Input.GetKeyDown(KeyCode.Space))
+        else if (CurrentSounds == 10 && Input.GetKeyDown(KeyCode.Space) && !pause.paused)
         {
             narratorText.text = "";
             BackgroundMusic.Play();

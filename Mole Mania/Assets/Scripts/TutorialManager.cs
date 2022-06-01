@@ -25,6 +25,7 @@ public class TutorialManager : MonoBehaviour
     public bool mole = false;
 
     public AudioSource BackgroundMusic;
+    public GameObject loadingPannel;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class TutorialManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+                loadingPannel.SetActive(true);
                 SceneManager.LoadScene("EndlessMode");
             }
         }
@@ -133,6 +135,7 @@ public class TutorialManager : MonoBehaviour
             {
                 posMovement++;
                 timer = 0;
+                loadingPannel.SetActive(true);
                 SceneManager.LoadScene("ArcadeSetup");
             }
         }

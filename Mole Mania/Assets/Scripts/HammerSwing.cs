@@ -49,10 +49,7 @@ public class HammerSwing : MonoBehaviour
                 timer += Time.deltaTime;
                 if (timer > swingTime)
                 {
-                    swingHori = false;
-                    timer = 0;
-                    transform.position = awayPos;
-                    transform.eulerAngles = awayRot;
+                    StartCoroutine(SwingPastPoint());
                 }
             }
             else if (swingVert)
@@ -63,10 +60,7 @@ public class HammerSwing : MonoBehaviour
                 timer += Time.deltaTime;
                 if (timer > swingTime)
                 {
-                    swingVert = false;
-                    timer = 0;
-                    transform.position = awayPos;
-                    transform.eulerAngles = awayRot;
+                    StartCoroutine(SwingPastPoint());
                 }
             }
             else if (Input.GetMouseButtonDown(0))
@@ -119,5 +113,18 @@ public class HammerSwing : MonoBehaviour
             }
         }
        
+    }
+
+    IEnumerator SwingPastPoint()
+    {
+        canSwing = false;
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+        timer = 0;
+        swingHori = false;
+        swingVert = false;
+        canSwing = true;
+        transform.position = awayPos;
+        transform.eulerAngles = awayRot;
     }
 }

@@ -30,6 +30,7 @@ public class EndlessSpawn : MonoBehaviour
     public float spawnPosY = 17;
     public int numOfMoles;
     public float scoreMultiplier = 200f;
+    public GameObject loadingPannel;
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +60,12 @@ public class EndlessSpawn : MonoBehaviour
         //}
         if (Input.GetKeyDown(KeyCode.R)) // reset
         {
+            loadingPannel.SetActive(true);
             SceneManager.LoadScene("EndlessMode");
         }
         if (Input.GetKeyDown(KeyCode.T)) // title screen
         {
+            loadingPannel.SetActive(true);
             SceneManager.LoadScene("Tutorial");
         }
     }

@@ -21,6 +21,8 @@ public class EndingManager : MonoBehaviour
 
     public Camera mainCam;
     public Camera badEndCam;
+    public Pause pause;
+    public GameObject loadingPannel;
 
 
     // Start is called before the first frame update
@@ -45,12 +47,14 @@ public class EndingManager : MonoBehaviour
         {
             spawnManagerScript.goodEnd = true;
             endingText.text = ("You destroyed the machine and freed the moles!\nPress R to restart\nPress T to return to title");
-            if (Input.GetKeyDown(KeyCode.R)) //reset
+            if (Input.GetKeyDown(KeyCode.R) && !pause.paused) //reset
             {
+                loadingPannel.SetActive(true);
                 SceneManager.LoadScene("ArcadeSetup");
             }
-            if (Input.GetKeyDown(KeyCode.T)) // title screen
+            if (Input.GetKeyDown(KeyCode.T) && !pause.paused) // title screen
             {
+                loadingPannel.SetActive(true);
                 SceneManager.LoadScene("Tutorial");
             }
 
@@ -76,12 +80,14 @@ public class EndingManager : MonoBehaviour
             started = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) // reset
+        if (Input.GetKeyDown(KeyCode.R) && !pause.paused) // reset
         {
+            loadingPannel.SetActive(true);
             SceneManager.LoadScene("ArcadeSetup");
         }
-        if (Input.GetKeyDown(KeyCode.T)) // title screen
+        if (Input.GetKeyDown(KeyCode.T) && !pause.paused) // title screen
         {
+            loadingPannel.SetActive(true);
             SceneManager.LoadScene("Tutorial");
         }
     }

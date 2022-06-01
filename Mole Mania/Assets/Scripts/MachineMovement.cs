@@ -331,7 +331,10 @@ public class MachineMovement : MonoBehaviour
                 lightsActivate(lights[lightOrder[i]]);
                 yield return new WaitForSeconds(Random.Range(.6f, .8f));
                 lightsDeactivate(lights[lightOrder[i]]);
-                yield return new WaitForSeconds(Random.Range(.1f, .2f));
+                if (i+1 != correctPats)
+                {
+                    yield return new WaitForSeconds(Random.Range(.1f, .2f));
+                }
             }
             
             //enables all lights to be hit

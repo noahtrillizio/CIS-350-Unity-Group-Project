@@ -15,11 +15,13 @@ public class TutorialMoleMove : MonoBehaviour
     public float speed;
     public bool isUp;
     private TutorialManager tm;
+    private TutorialHammerSwing hammer;
     // Start is called before the first frame update
 
     private void Start()
     {
         tm = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
+        hammer = GameObject.FindGameObjectWithTag("Hammer").GetComponent<TutorialHammerSwing>();
     }
 
     void Update()
@@ -43,7 +45,7 @@ public class TutorialMoleMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(tm.timer > .45f) {
+        if(tm.timer > .45f && hammer.swingHori) {
             tm.timer = 0;
             tm.posMovement++;
             transform.Translate(Vector3.down * .7f);

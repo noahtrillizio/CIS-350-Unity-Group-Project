@@ -24,6 +24,7 @@ public class HitMachine : MonoBehaviour
 
     public AudioSource MachineSFX;
     public AudioClip machineHitSound;
+    public HammerSwing hammer;
 
     private void Start()
     {
@@ -31,51 +32,68 @@ public class HitMachine : MonoBehaviour
         canHit = false;
         lightColor = GetComponent<Renderer>().material;
         lightOriginPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-       
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (canHit && other.CompareTag("Hammer"))
         {
-            //enables healthbar on machineMovement script
-            if (!machineScript.firstLight)
-            {
-                machineScript.firstLight = true;
-            }
-
-            canHit = false;
-            lightColor.SetColor("_EmissionColor", Color.black);
-
-            //hitting sound
-            GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
-            Destroy(clone, 1.0f);
-            MachineSFX.PlayOneShot(machineHitSound, 1.0f);
-
             //determines which light is hit and how to procede
-            if (name == "Hatch Light")
+            if (name == "Hatch Light" && hammer.swingVert)
             {
+                canHit = false;
+                lightColor.SetColor("_EmissionColor", Color.black);
+                //hitting sound
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f);
+                machineScript.firstLight = true;
                 machineScript.lightQueue.Enqueue(0);
                 machineScript.CallMoveHatchUp();
             }
-            else if (name == "LRLight")
+            else if (name == "LRLight" && hammer.swingVert)
             {
+                canHit = false;
+                lightColor.SetColor("_EmissionColor", Color.black);
+                //hitting sound
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f);
+                machineScript.firstLight = true;
                 machineScript.lightQueue.Enqueue(1);
-
             }
-            else if (name == "ULLight")
+            else if (name == "ULLight" && hammer.swingVert)
             {
+                canHit = false;
+                lightColor.SetColor("_EmissionColor", Color.black);
+                //hitting sound
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f);
+                machineScript.firstLight = true;
                 machineScript.lightQueue.Enqueue(2);
-
             }
-            else if (name == "bottomTriLights")
+            else if (name == "bottomTriLights" && hammer.swingVert)
             {
+                canHit = false;
+                lightColor.SetColor("_EmissionColor", Color.black);
+                //hitting sound
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f);
+                machineScript.firstLight = true;
                 machineScript.CallMoveBottomLightIn();
                 machineScript.lightQueue.Enqueue(3);
-
             }
-            else if (name == "topTriLights")
+            else if (name == "topTriLights" && hammer.swingHori)
             {
+                canHit = false;
+                lightColor.SetColor("_EmissionColor", Color.black);
+                //hitting sound
+                GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+                Destroy(clone, 1.0f);
+                MachineSFX.PlayOneShot(machineHitSound, 1.0f);
+                machineScript.firstLight = true;
                 machineScript.CallMoveTopLightIn();
                 machineScript.lightQueue.Enqueue(4);
             }
