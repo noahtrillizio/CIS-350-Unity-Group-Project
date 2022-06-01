@@ -26,6 +26,7 @@ public class HammerSwing : MonoBehaviour
     private float scale;
     private float HammerDistance;
     public bool inEndlessMode = false;
+    public bool swingTop = false;
 
     void Start()
     {
@@ -87,13 +88,13 @@ public class HammerSwing : MonoBehaviour
                                 transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
                                 transform.eulerAngles = vertRot;
                                 swingVert = true;
-
                             }
                             else
                             {//Horizontal Swing
                                 transform.position = new Vector3(pos.x + .4f, pos.y + HammerDistance, pos.z);
                                 transform.eulerAngles = horiRot;
                                 swingHori = true;
+                                swingTop = true;
                             }
                         }
                         else if (pos.y >= lowYFlat && pos.y <= highYFlat)
@@ -123,6 +124,7 @@ public class HammerSwing : MonoBehaviour
         timer = 0;
         swingHori = false;
         swingVert = false;
+        swingTop = false;
         canSwing = true;
         transform.position = awayPos;
         transform.eulerAngles = awayRot;

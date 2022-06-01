@@ -85,7 +85,7 @@ public class HitMachine : MonoBehaviour
                 machineScript.CallMoveBottomLightIn();
                 machineScript.lightQueue.Enqueue(3);
             }
-            else if (name == "topTriLights" && hammer.swingHori)
+            else if (name == "topTriLights" && hammer.swingTop)
             {
                 canHit = false;
                 lightColor.SetColor("_EmissionColor", Color.black);

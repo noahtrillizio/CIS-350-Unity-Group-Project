@@ -74,4 +74,9 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Tutorial");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

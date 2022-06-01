@@ -50,6 +50,10 @@ public class TutorialManager : MonoBehaviour
                 loadingPannel.SetActive(true);
                 SceneManager.LoadScene("EndlessMode");
             }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
+            }
         }
         else if (posMovement == 1) {
             cam.transform.Rotate(Vector3.left, Time.deltaTime * 10 / 3);
