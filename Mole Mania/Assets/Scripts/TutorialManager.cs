@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
 
     public Camera cam;
-    public Text startingText;
-    public Text tutorialText;
+    public GameObject[] startingObjects;
+    public TextMeshProUGUI tutorialText;
 
     public int posMovement = 0;
     public float timer = 0;
@@ -36,7 +37,10 @@ public class TutorialManager : MonoBehaviour
     {
         if (posMovement == 0) {
             if (Input.GetKeyDown(KeyCode.Space)) {
-                startingText.enabled = false;
+                for (int i = 0; i < startingObjects.Length; i++)
+                {
+                    startingObjects[i].active = false;
+                }
                 posMovement++;
                 BackgroundMusic.Play();
             }

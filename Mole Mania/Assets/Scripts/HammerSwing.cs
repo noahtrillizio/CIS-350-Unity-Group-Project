@@ -15,8 +15,8 @@ public class HammerSwing : MonoBehaviour
     public float swingTime;
 
     public bool canSwing;
-    private bool swingHori;
-    private bool swingVert;
+    public bool swingHori;
+    public bool swingVert;
     private float timer;
     readonly private Vector3 horiRot = new Vector3(30, -90, 67.5f);//x->90
     readonly private Vector3 vertRot = new Vector3(180, 30, -23);//y->-90
@@ -25,10 +25,10 @@ public class HammerSwing : MonoBehaviour
     readonly private Vector3 awayPos = new Vector3(11, 33, 13);
     private float scale;
     private float HammerDistance;
+    public bool inEndlessMode = false;
 
-    private void Start()
+    void Start()
     {
-        canSwing = true;
         scale = transform.localScale.z / 100;
         HammerDistance = scale * 6;
         swingHori = false;
@@ -78,33 +78,42 @@ public class HammerSwing : MonoBehaviour
                  //If you want it to hit certain things and miss others then use layers
                     Vector3 pos = hit.point;
                     //Debug.Log(pos);
-                    if (pos.y > highYFlat)
+                    if (hit.collider.CompareTag("Mole"))
+                    {//Horizontal Swing
+                        transform.position = new Vector3(pos.x + .4f, lowYFlat + HammerDistance, pos.z);
+                        transform.eulerAngles = horiRot;
+                        swingHori = true;
+                    }
+                    else
                     {
-                        if (pos.y < lowYTop)
-                        {//Vertical Swing
-                            transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
-                            transform.eulerAngles = vertRot;
-                            swingVert = true;
+                        if (pos.y > highYFlat && !inEndlessMode)
+                        {
+                            if (pos.y < lowYTop)
+                            {//Vertical Swing
+                                transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
+                                transform.eulerAngles = vertRot;
+                                swingVert = true;
 
+                            }
+                            else
+                            {//Horizontal Swing
+                                transform.position = new Vector3(pos.x + .4f, pos.y + HammerDistance, pos.z);
+                                transform.eulerAngles = horiRot;
+                                swingHori = true;
+                            }
                         }
-                        else
+                        else if (pos.y >= lowYFlat && pos.y <= highYFlat)
                         {//Horizontal Swing
                             transform.position = new Vector3(pos.x + .4f, pos.y + HammerDistance, pos.z);
                             transform.eulerAngles = horiRot;
                             swingHori = true;
                         }
-                    }
-                    else if (pos.y >= lowYFlat && pos.y <= highYFlat)
-                    {//Horizontal Swing
-                        transform.position = new Vector3(pos.x + .4f, pos.y + HammerDistance, pos.z);
-                        transform.eulerAngles = horiRot;
-                        swingHori = true;
-                    }
-                    else
-                    {//Virtical Swing
-                        transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
-                        transform.eulerAngles = vertRot;
-                        swingVert = true;
+                        else if (!inEndlessMode)
+                        {//Virtical Swing
+                            transform.position = new Vector3(pos.x + HammerDistance, pos.y, pos.z + .4f);
+                            transform.eulerAngles = vertRot;
+                            swingVert = true;
+                        }
                     }
                 }
             }

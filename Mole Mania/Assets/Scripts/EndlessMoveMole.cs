@@ -9,7 +9,12 @@ using UnityEngine;
 
 public class EndlessMoveMole : MonoBehaviour
 {
-    public float speed;
+    public float animationSpeed = 1f;
+    public float animationSpeedMultiplier = 1f;
+    public float timeAlive;
+    private float localTimer = 0f;
+    public Animator moleAnimation;
+
     public bool isUp;
     private EndlessSpawn spawnManagerScript;
     private ScoreManager scoreManagerScript;
@@ -26,8 +31,6 @@ public class EndlessMoveMole : MonoBehaviour
         StartCoroutine(MoveMoleCoroutine());
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<EndlessSpawn>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        
-        speed = 5 + scoreManagerScript.score * 5 / 100;
 
         xPos = transform.position.x;
         yPos = transform.position.y;
@@ -62,33 +65,36 @@ public class EndlessMoveMole : MonoBehaviour
 
     IEnumerator MoveMoleCoroutine()
     {
-        //add a 1 second delay before first spawning objects
-        yield return new WaitForSeconds(1.0f);
-
-        //while (true)
-        //{
-        MoveMole();
-
-        float randomDelay = Random.Range(15.0f/speed, 25.0f/speed);
-
-        yield return new WaitForSeconds(randomDelay);
+        isUp = false;
+        moleAnimation.SetFloat("animationSpeed", animationSpeed * animationSpeedMultiplier);
+        float moveTime = timeAlive / 8;
+        while (localTimer < moveTime)
+        {
+            localTimer += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+            transform.position = new Vector3(xPos, yPos + (5 * (localTimer / moveTime)), zPos);
+        }
+        transform.position = new Vector3(xPos, yPos + 5, zPos);
+        isUp = true;
+        while (localTimer < timeAlive - moveTime)
+        {
+            localTimer += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        isUp = false;
+        while (localTimer < timeAlive)
+        {
+            localTimer += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+            transform.position = new Vector3(xPos, yPos + 5 - (5 * ((localTimer - (timeAlive - moveTime)) / moveTime)), zPos);
+        }
         spawnManagerScript.moleHere[posIndex] = false;
         spawnManagerScript.numOfMoles--;
         Destroy(gameObject);
-        //}
-
     }
-    void MoveMole()
+
+    public float getPercentLived()
     {
-        if (!isUp)
-        {
-            transform.position = new Vector3(xPos, yPos + 5, zPos);
-            isUp = true;
-        }
-        //else
-        //{
-        //    transform.position = new Vector3(xPos, yPos, zPos);
-        //    isUp = false;
-        //}
+        return localTimer / timeAlive;
     }
 }

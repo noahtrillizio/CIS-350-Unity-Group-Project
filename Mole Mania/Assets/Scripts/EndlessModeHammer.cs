@@ -12,7 +12,6 @@ public class EndlessModeHammer : MonoBehaviour
 {
     private ScoreManager scoreManagerScript;
     private EndlessSpawn spawnManagerScript;
-    private Timer gameTime;
 
     public AudioSource MoleRelatedSFX;
     public AudioClip molesHit;
@@ -27,23 +26,20 @@ public class EndlessModeHammer : MonoBehaviour
     public Text narratorText;
 
     public GameObject panel;
+    private HammerSwing hammer;
 
     void Start()
     {
-        gameTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<EndlessSpawn>();
-        gameTime.timerIsRunning = true;
+        hammer = GameObject.FindGameObjectWithTag("Hammer").GetComponent<HammerSwing>();
+        hammer.canSwing = true;
+        hammer.inEndlessMode = true;
         scoreText.gameObject.SetActive(true);
         timeText.gameObject.SetActive(true);
         panel.gameObject.SetActive(false);
         narratorText.gameObject.SetActive(false);
         CurrentSounds = 0;
-    }
-
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +49,8 @@ public class EndlessModeHammer : MonoBehaviour
             //Debug.Log("hit");
             spawnManagerScript.moleHere[other.GetComponent<EndlessMoveMole>().posIndex] = false;
             spawnManagerScript.numOfMoles--;
-            scoreManagerScript.score++;
+            scoreManagerScript.kills++;
+            scoreManagerScript.score += (int)((1f - other.gameObject.GetComponent<EndlessMoveMole>().getPercentLived()) * spawnManagerScript.scoreMultiplier);
             MoleRelatedSFX.PlayOneShot(molesHit, 1.0f);
             //GameObject clone = (GameObject)Instantiate(SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
             //Destroy(clone, 1.0f);

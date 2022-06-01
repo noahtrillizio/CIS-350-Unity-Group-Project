@@ -34,6 +34,54 @@ public class HitMachine : MonoBehaviour
        
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (canHit && other.CompareTag("Hammer"))
+        {
+            //enables healthbar on machineMovement script
+            if (!machineScript.firstLight)
+            {
+                machineScript.firstLight = true;
+            }
+
+            canHit = false;
+            lightColor.SetColor("_EmissionColor", Color.black);
+
+            //hitting sound
+            GameObject clone = (GameObject)Instantiate(SpecialEffect, gameObject.transform.position, Quaternion.identity);
+            Destroy(clone, 1.0f);
+            MachineSFX.PlayOneShot(machineHitSound, 1.0f);
+
+            //determines which light is hit and how to procede
+            if (name == "Hatch Light")
+            {
+                machineScript.lightQueue.Enqueue(0);
+                machineScript.CallMoveHatchUp();
+            }
+            else if (name == "LRLight")
+            {
+                machineScript.lightQueue.Enqueue(1);
+
+            }
+            else if (name == "ULLight")
+            {
+                machineScript.lightQueue.Enqueue(2);
+
+            }
+            else if (name == "bottomTriLights")
+            {
+                machineScript.CallMoveBottomLightIn();
+                machineScript.lightQueue.Enqueue(3);
+
+            }
+            else if (name == "topTriLights")
+            {
+                machineScript.CallMoveTopLightIn();
+                machineScript.lightQueue.Enqueue(4);
+            }
+        }
+    }
+    /*
     //detects when player clicks on machine parts
     private void OnMouseDown()
     {
@@ -46,6 +94,7 @@ public class HitMachine : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //if machine spot is clicked, resets lights
+            //Debug.Log(hit.collider.name);
             if (canHit && hit.collider.name != "Hatch")
             {
                 //enables healthbar on machineMovement script
@@ -91,5 +140,5 @@ public class HitMachine : MonoBehaviour
                 }
             }
         }  
-    }
+    }*/
 }

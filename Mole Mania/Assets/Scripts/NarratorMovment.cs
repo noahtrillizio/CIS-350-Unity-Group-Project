@@ -62,7 +62,7 @@ public class NarratorMovment : MonoBehaviour
         {
             duringGameTimer++;
         }
-        else if (NarratorMidFightMove.correctPats == 7 && transform.position.y <= 28.58356)
+        else if (NarratorMidFightMove.correctPats == 5 && transform.position.y <= 28.58356)
         {
             transform.position = Vector3.MoveTowards(transform.position, movingUp.position, step);
             HammerHitScript.narratorText.text = "No, please don't free the moles. You have no idea the atrocities these creature's have committed, they deserve it I swear!";
@@ -80,7 +80,7 @@ public class NarratorMovment : MonoBehaviour
         {
             duringGameTimer++;
         }
-        else if (NarratorMidFightMove.correctPats == 5 && transform.position.y <= 28.58356)
+        else if (NarratorMidFightMove.correctPats == 4 && transform.position.y <= 28.58356)
         {
             transform.position = Vector3.MoveTowards(transform.position, movingUp.position, step);
             HammerHitScript.narratorText.text = "If you don't stop that right now you'll never be able to claim your legendary title!";
@@ -98,7 +98,7 @@ public class NarratorMovment : MonoBehaviour
         {
             duringGameTimer++;
         }
-        else if (NarratorMidFightMove.correctPats == 3 && transform.position.y <= 28.58356)
+        else if (NarratorMidFightMove.correctPats == 2 && transform.position.y <= 28.58356)
         {
             transform.position = Vector3.MoveTowards(transform.position, movingUp.position, step);
             HammerHitScript.narratorText.text = "Hey! That's destroying my machine stop that!";

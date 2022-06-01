@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;
     public int score = 0;
+    public int kills = 0;
 
     void Start()
     {

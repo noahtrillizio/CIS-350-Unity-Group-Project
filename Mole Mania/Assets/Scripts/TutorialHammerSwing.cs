@@ -79,33 +79,42 @@ public class TutorialHammerSwing : MonoBehaviour
                     //Debug.Log(pos);
                     if (pos.x < -1.6)
                     {
-                        if (pos.y > highYFlat)
+                        if (hit.collider.CompareTag("Mole"))
+                        {//Horizontal Swing
+                            transform.position = new Vector3(pos.x, lowYFlat + HammerDistance, pos.z + .1f);
+                            transform.eulerAngles = horiRot;
+                            swingHori = true;
+                        }
+                        else
                         {
-                            if (pos.y < lowYTop)
-                            {//Vertical Swing
-                                transform.position = new Vector3(pos.x + .1f, pos.y, pos.z + HammerDistance);
-                                transform.eulerAngles = vertRot;
-                                swingVert = true;
+                            if (pos.y > highYFlat)
+                            {
+                                if (pos.y < lowYTop)
+                                {//Vertical Swing
+                                    transform.position = new Vector3(pos.x + .1f, pos.y, pos.z + HammerDistance);
+                                    transform.eulerAngles = vertRot;
+                                    swingVert = true;
 
+                                }
+                                else
+                                {//Horizontal Swing
+                                    transform.position = new Vector3(pos.x, pos.y + HammerDistance, pos.z + .1f);
+                                    transform.eulerAngles = horiRot;
+                                    swingHori = true;
+                                }
                             }
-                            else
+                            else if (pos.y >= lowYFlat && pos.y <= highYFlat)
                             {//Horizontal Swing
                                 transform.position = new Vector3(pos.x, pos.y + HammerDistance, pos.z + .1f);
                                 transform.eulerAngles = horiRot;
                                 swingHori = true;
                             }
-                        }
-                        else if (pos.y >= lowYFlat && pos.y <= highYFlat)
-                        {//Horizontal Swing
-                            transform.position = new Vector3(pos.x, pos.y + HammerDistance, pos.z + .1f);
-                            transform.eulerAngles = horiRot;
-                            swingHori = true;
-                        }
-                        else
-                        {//Virtical Swing
-                            transform.position = new Vector3(pos.x + .1f, pos.y, pos.z + HammerDistance);
-                            transform.eulerAngles = vertRot;
-                            swingVert = true;
+                            else
+                            {//Virtical Swing
+                                transform.position = new Vector3(pos.x + .1f, pos.y, pos.z + HammerDistance);
+                                transform.eulerAngles = vertRot;
+                                swingVert = true;
+                            }
                         }
                     }
                 }

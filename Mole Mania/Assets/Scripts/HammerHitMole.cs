@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HammerHitMole : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class HammerHitMole : MonoBehaviour
     public Text scoreText;
     public Text timeText;
 
-    public Text narratorText;
+    public TextMeshProUGUI narratorText;
 
     public GameObject panel;
 
@@ -32,12 +33,14 @@ public class HammerHitMole : MonoBehaviour
     public float CurrentSounds = 0;
 
     private float Timer = 176;
+    private HammerSwing hammer;
 
     void Start()
     {
         gameTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManagerScript = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+        hammer = spawnManagerScript.hammer;
         setUIActive(false);
     }
 
@@ -115,8 +118,8 @@ public class HammerHitMole : MonoBehaviour
         }
         else if (CurrentSounds == 11)
         {
-            soundChanger = (scoreManagerScript.score) * .01f;
-            if (scoreManagerScript.score >= 3)
+            soundChanger = (scoreManagerScript.kills) * .01f;
+            if (scoreManagerScript.kills >= 3)
             {
                 BackgroundMusic.pitch = (1f - soundChanger) + .03f;
             }
@@ -131,16 +134,17 @@ public class HammerHitMole : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Mole")
+        if (other.gameObject.tag == "Mole" && hammer.swingHori)
         {
             //Debug.Log("hit");
             spawnManagerScript.moleHere[other.GetComponent<MoleMove>().posIndex] = false;
             spawnManagerScript.numOfMoles--;
-            scoreManagerScript.score++;
+            scoreManagerScript.score+= (int)((1f-other.gameObject.GetComponent<MoleMove>().getPercentLived()) * spawnManagerScript.scoreMultiplier);
+            scoreManagerScript.kills++;
             MoleRelatedSFX.PlayOneShot(molesHit, 1.0f);
             GameObject clone = (GameObject)Instantiate (SpecialEffect, other.gameObject.transform.position, Quaternion.identity);
-             Destroy(clone, 1.0f);
-             Destroy(other.gameObject);
+            Destroy(clone, 1.0f);
+            Destroy(other.gameObject);
             //Destroy(gameObject);
         }
     }

@@ -36,12 +36,12 @@ public class EndingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer.gameOver && machineScript.correctPats != 9)//score gets above a certain amount or time runs out.
+        if (timer.gameOver && !spawnManagerScript.goodEnd)//score gets above a certain amount or time runs out.
         {
             timer.gameOver = true;
             StartCoroutine(UncomfortableSilence());
         }
-        else if (machineScript.correctPats == 9)
+        else if (machineScript.correctPats == 6)
         {
             spawnManagerScript.goodEnd = true;
             endingText.text = ("You destroyed the machine and freed the moles!\nPress R to restart\nPress T to return to title");
@@ -87,13 +87,9 @@ public class EndingManager : MonoBehaviour
     }
     IEnumerator ChangeBadEndText()
     {
-    endingText.text = ("Your score: " + scoreManagerScript.score + "\nPress R to restart\nPress T to return to title");
-
-    yield return new WaitForSeconds(5f);
-
-    endingText.text = ("Moles killed: " + scoreManagerScript.score + "\nPress R to restart\nPress T to return to title");
-
-        yield return new WaitForSeconds(2f);
+        endingText.text = ("Your score: " + scoreManagerScript.score + "\nPress R to restart\nPress T to return to title");
+        yield return new WaitForSeconds(3f);
+        endingText.text = ("Moles killed: " + scoreManagerScript.kills + "\nPress R to restart\nPress T to return to title");
     }
 
 }

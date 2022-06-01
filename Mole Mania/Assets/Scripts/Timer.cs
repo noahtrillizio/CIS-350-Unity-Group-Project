@@ -18,19 +18,11 @@ public class Timer : MonoBehaviour
 
     private float mins;
     private float secs;
-    public bool timerIsRunning;
-    public bool gameOver;
+    public bool timerIsRunning = false;
+    public bool gameOver = false;
 
 
     public Text timeText;
-    void Start()
-    {
-        //maxTime = Mathf.FloorToInt(timeRemaining);
-        display();
-        timerIsRunning = false;
-        gameOver = false;
-        
-    }
 
    
     //creates a minutes and seconds timer for game

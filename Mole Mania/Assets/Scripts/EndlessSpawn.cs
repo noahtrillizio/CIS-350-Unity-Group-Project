@@ -17,7 +17,6 @@ public class EndlessSpawn : MonoBehaviour
     public GameObject[] moles;
     public int[] scoreToChangeMoles;
 
-    private Timer time;
     private ScoreManager scoreManager;
     public GameObject controlsText;
 
@@ -30,12 +29,12 @@ public class EndlessSpawn : MonoBehaviour
     public bool[] moleHere;
     public float spawnPosY = 17;
     public int numOfMoles;
+    public float scoreMultiplier = 200f;
 
     // Start is called before the first frame update
     void Start()
     {
         //goodEnd = true;//Temp
-        time = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         StartCoroutine(SpawnRandomPrefabWithCoroutine());
         controlsText.SetActive(false);
@@ -88,26 +87,8 @@ public class EndlessSpawn : MonoBehaviour
                 SpawnMole(location);
 
                 //changes speed of spawning based on score
-                if (scoreManager.score < 10)
-                {
-                    spawnDelayMin = 2;
-                    spawnDelayMax = 4;
-                }
-                if (scoreManager.score < 20 && scoreManager.score > 10)
-                {
-                    spawnDelayMin = 1;
-                    spawnDelayMax = 2;
-                }
-                if (scoreManager.score < 40 && scoreManager.score > 20)
-                {
-                    spawnDelayMin = 0.3f;
-                    spawnDelayMax = 1;
-                }
-                if (scoreManager.score > 40)
-                {
-                    spawnDelayMin = 0.1f;
-                    spawnDelayMax = 1;
-                }
+                spawnDelayMin = Mathf.Pow(1.015f, -scoreManager.kills) + .05f;
+                spawnDelayMax = 3f * Mathf.Pow(1.005f, -2.2f * scoreManager.kills) +.2f;
                 float randomDelay = Random.Range(spawnDelayMin, spawnDelayMax);
 
                 yield return new WaitForSeconds(randomDelay);
@@ -125,7 +106,14 @@ public class EndlessSpawn : MonoBehaviour
         //spawn mole
         int molePrefabNum = 0;
 
-        Instantiate(moles[molePrefabNum], spawnPos, moles[molePrefabNum].transform.rotation);
+        float timeAlive = 3 * Mathf.Pow(1.01f, -scoreManager.kills) + .65f;
+        float animationSpeed = 1f + (scoreManager.kills * .01f);
+        scoreMultiplier = 200f + (scoreManager.kills * 1.6f);
+
+        EndlessMoveMole mole = Instantiate(moles[molePrefabNum], spawnPos, moles[molePrefabNum].transform.rotation).GetComponent<EndlessMoveMole>();
+        mole.timeAlive = timeAlive;
+        mole.animationSpeed = animationSpeed;
+        moleHere[locationIndex] = true;
         moleHere[locationIndex] = true;
     }
 }
